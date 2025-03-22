@@ -14,7 +14,7 @@ import type { FC } from 'react'
 
 export const metadata: Metadata = {
   description:
-    'Build fast, customizable, and content-rich websites with Nextra. Powered by Next.js, it offers seamless Markdown support, customizable themes, file conventions, and easy integration with MDX, making it perfect for documentation, blogs, and static websites.'
+    'Triplex是基于Aptos区块链的高性能去中心化交易协议，提供永续合约、现货交易、流动性池和Oracle系统，利用Move资源模型确保交易安全与高效。'
 }
 
 const IndexPage: FC = () => {
@@ -22,21 +22,21 @@ const IndexPage: FC = () => {
     <div className="home-content">
       <div className="content-container">
         <h1 className="headline">
-          Make beautiful websites <br className="max-sm:hidden" />
-          with Next.js & MDX
+          Triplex: 下一代去中心化 <br className="max-sm:hidden" />
+          金融交易协议
         </h1>
         <p className="subtitle">
-          Simple, powerful and flexible site generation framework{' '}
+          基于Aptos区块链打造的高性能DeFi交易生态系统{' '}
           <br className="max-md:hidden" />
-          with everything you love from{' '}
-          <Link href="https://nextjs.org" className="text-current">
-            Next.js
+          结合Move语言资源安全模型与高吞吐量交易引擎{' '}
+          <Link href="https://aptoslabs.com" className="text-current">
+            Aptos
           </Link>
-          .
+          。
         </p>
         <p className="subtitle">
-          <Link className={styles.cta} href="/docs">
-            Get started <span>→</span>
+          <Link className={styles.cta} href="/architecturalanalysis">
+            浏览文档 <span>→</span>
           </Link>
         </p>
       </div>
@@ -48,7 +48,7 @@ const IndexPage: FC = () => {
               large
               centered
               id="docs-card"
-              href="/docs/docs-theme/start"
+              href="/architecturalanalysis/markets"
             >
               <Image src={docsCard} alt="Background" loading="eager" />
               <Image
@@ -57,32 +57,24 @@ const IndexPage: FC = () => {
                 loading="eager"
               />
               <h3>
-                Full-power documentation <br className="show-on-mobile" />
-                in minutes
+                全方位市场系统 <br className="show-on-mobile" />
+                多样化交易策略
               </h3>
             </Feature>
-            <Feature index={1} centered href="/docs/guide/image">
+            <Feature index={1} centered href="/architecturalanalysis/markets/oracle">
               <h3>
-                Links and images are <br className="show-on-mobile" />
-                always <span className="font-light">optimized</span>
+                去中心化Oracle <br className="show-on-mobile" />
+                保障 <span className="font-light">价格真实性</span>
               </h3>
               <p className="mb-8 text-start">
-                Nextra automatically converts Markdown links and images to use{' '}
-                <Link href="https://nextjs.org/docs/routing/introduction#linking-between-pages">
-                  Next.js Link
-                </Link>{' '}
-                and{' '}
-                <Link href="https://nextjs.org/docs/basic-features/image-optimization#local-images">
-                  Next.js Image
-                </Link>{' '}
-                when possible. No slow navigation or layout shift.
+                Triplex Oracle系统采用多源价格聚合技术，结合加权平均算法和偏差检测机制，通过严格的权限控制和数据验证确保链上价格数据的真实性与可靠性。
               </p>
               <div>
                 <div className={styles.optimization}>
                   <div style={{ fontSize: '.9rem' }} className="leading-8">
-                    <code>[Learn more](/more)</code>
+                    <code>多数据源聚合</code>
                     <br />
-                    <code>![Hero](/hero.png)</code>
+                    <code>价格操纵防护</code>
                   </div>
                 </div>
                 <ArrowRightIcon
@@ -91,9 +83,9 @@ const IndexPage: FC = () => {
                 />
                 <div className={styles.optimization}>
                   <div style={{ fontSize: '.9rem' }} className="leading-8">
-                    <code>{'<Link .../>'}</code>
+                    <code>实时价格反馈</code>
                     <br />
-                    <code>{'<Image .../>'}</code>
+                    <code>故障自动切换</code>
                   </div>
                 </div>
               </div>
@@ -101,25 +93,23 @@ const IndexPage: FC = () => {
             <Feature
               index={2}
               id="highlighting-card"
-              href="/docs/guide/syntax-highlighting"
+              href="/architecturalanalysis/markets/perpetual"
             >
               <h3>
-                Advanced syntax <br className="show-on-mobile" />
-                highlighting solution
+                专业永续合约 <br className="show-on-mobile" />
+                精准风控机制
               </h3>
               <p>
-                Performant and reliable build-time syntax highlighting powered
-                by <Link href="https://shiki.style">Shiki</Link>.
+                支持最高20倍杠杆，配备动态调整的风险参数和多层次清算机制，自动调节费率与保证金要求，有效降低系统风险。
               </p>
             </Feature>
-            <Feature index={3} href="/docs/guide/i18n">
+            <Feature index={3} href="/architecturalanalysis/markets/spot">
               <h3>
-                I18n as easy as <br className="show-on-mobile" />
-                creating new files
+                高性能现货交易 <br className="show-on-mobile" />
+                原子级交易结算
               </h3>
               <p className="mb-4">
-                Place your page files in folders specific to each locale, Nextra
-                and Next.js will handle the rest for you.
+                利用Aptos区块链每秒处理超过100,000笔交易的能力，实现亚秒级交易确认，无滑点执行，为用户提供媲美中心化交易所的体验。
               </p>
               <I18n />
             </Feature>
@@ -127,19 +117,19 @@ const IndexPage: FC = () => {
               index={4}
               centered
               className="flex flex-col items-center justify-center bg-[url(/assets/gradient-bg.jpeg)] bg-cover bg-center text-white"
-              href="/docs/guide/markdown"
+              href="/architecturalanalysis/tokenomics"
             >
               <MdxIcon className="w-4/6 [filter:drop-shadow(0_2px_10px_rgba(0,0,0,.1))]" />
               <p style={{ textShadow: '0 2px 4px rgb(0 0 0 / 20%)' }}>
                 <Link
-                  href="https://mdxjs.com/blog/v3"
+                  href="/architecturalanalysis/tokenomics/trt"
                   className="!text-current"
                 >
-                  MDX 3
+                  TRT代币体系
                 </Link>{' '}
-                lets you use Components inside Markdown,{' '}
+                全面治理与激励架构，{' '}
                 <br className="hide-medium" />
-                with huge performance boost since v1.
+                通过协议收益分享与质押机制促进生态可持续发展。
               </p>
             </Feature>
             <Feature
@@ -205,29 +195,28 @@ const IndexPage: FC = () => {
                   mixBlendMode: 'difference'
                 }}
               >
-                Dark <br />
-                mode <br />
-                included
+                Move <br />
+                资源 <br />
+                安全性
               </MotionH3>
             </Feature>
             <Feature
               index={6}
               large
               id="search-card"
-              href="/docs/docs-theme/theme-configuration#search"
+              href="/architecturalanalysis/liquidity"
             >
               <h3>
-                Full-text search,
+                创新流动性池设计,
                 <br />
-                zero-config needed
+                高效资本利用率
               </h3>
               <p className="z-2">
-                Nextra indexes your content automatically at build-time and
-                performs incredibly fast full-text search via{' '}
-                <Link href="https://github.com/cloudcannon/pagefind">
-                  Pagefind
+                Triplex流动性池采用先进的资本效率优化算法，定制化的做市策略和多层级风险隔离机制，最大化流动性提供者收益同时保障资金安全。{' '}
+                <Link href="/architecturalanalysis/liquidity/pool">
+                  深入了解
                 </Link>
-                .
+                。
               </p>
               <div className="absolute inset-0 z-1 size-full bg-[linear-gradient(to_right,white_250px,_transparent)] max-sm:hidden dark:bg-[linear-gradient(to_right,#202020_250px,_transparent)]" />
               <video
@@ -263,11 +252,11 @@ const IndexPage: FC = () => {
                 textShadow: '0 1px 6px rgb(38 59 82 / 18%)',
                 aspectRatio: '1.765'
               }}
-              href="/docs/docs-theme/page-configuration"
+              href="/architecturalanalysis/integration"
             >
               <h3>
-                Organize pages intuitively, <br />
-                with file-system routing from Next.js
+                模块化集成架构, <br />
+                灵活可扩展设计
               </h3>
             </Feature>
             <Feature
@@ -279,44 +268,42 @@ const IndexPage: FC = () => {
                 minHeight: 288
               }}
             >
-              <h3>A11y as a top priority</h3>
+              <h3>极致安全保障</h3>
               <p>
-                Nextra respects system options <br className="show-on-mobile" />
-                such as <b>Increase Contrast</b> and <b>Reduce Motion</b>.
+                充分发挥Move语言的资源安全性 <br className="show-on-mobile" />
+                实现<b>形式化验证</b>和<b>不变量保证</b>，防止资产盗用与漏洞利用。
               </p>
             </Feature>
-            <Feature index={9} href="/docs/guide/ssg">
+            <Feature index={9} href="/architecturalanalysis/tokenomics/governance">
               <h3>
-                Hybrid rendering, <br />
-                next generation
+                完全去中心化治理, <br />
+                社区主导决策
               </h3>
               <p className="mr-6">
-                You can leverage the hybrid rendering power from Next.js with
-                your Markdown content including{' '}
-                <Link href="https://nextjs.org/docs/app/building-your-application/rendering/server-components">
-                  Server Components
+                打造真正的DAO治理架构，实现协议参数、功能升级和资金分配的社区自治。透明的提案流程、投票权重和执行机制确保项目长期稳定发展。了解更多关于{' '}
+                <Link href="/architecturalanalysis/tokenomics/governance">
+                  治理机制
                 </Link>
-                ,{' '}
-                <Link href="https://nextjs.org/docs/app/building-your-application/rendering/client-components">
-                  Client Components
+                、{' '}
+                <Link href="/architecturalanalysis/tokenomics/incentives">
+                  经济激励
                 </Link>
-                , and{' '}
-                <Link href="https://nextjs.org/docs/app/building-your-application/data-fetching/incremental-static-regeneration">
-                  Incremental Static Regeneration (ISR)
+                和{' '}
+                <Link href="/architecturalanalysis/tokenomics/trt">
+                  代币分配
                 </Link>
-                .
+                。
               </p>
             </Feature>
             <Feature index={10} large>
-              <h3>And more...</h3>
+              <h3>技术亮点</h3>
               <p>
-                SEO / RTL Layout / Pluggable Themes / Built-in Components / Last
-                Git Edit Time / Multi-Docs...
-                <br />A lot of new possibilities to be explored.
+                毫秒级交易延迟 / 区块链级别安全保障 / 跨链资产兼容 / 开放API与SDK / 实时风控系统 / Layer 2扩展方案...
+                <br />构建面向未来的去中心化金融交易基础设施。
               </p>
               <p className="subtitle">
-                <Link className="no-underline" href="/docs">
-                  Start using Nextra →
+                <Link className="no-underline" href="/architecturalanalysis">
+                  探索Triplex生态 →
                 </Link>
               </p>
             </Feature>

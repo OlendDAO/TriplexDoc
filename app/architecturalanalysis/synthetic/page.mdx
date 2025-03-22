@@ -46,20 +46,20 @@ import { Callout, Cards, FileTree, Steps, Tabs } from 'nextra/components'
   </Tabs.Tab>
   
   <Tabs.Tab>
-    <Cards>
+<Cards>
       <Cards.Card title="与池系统交互" href="#与池系统交互">
         类型安全的流动性获取和抵押品管理
-      </Cards.Card>
+  </Cards.Card>
       <Cards.Card title="与预言机交互" href="#与预言机交互">
         能力模式保障的可靠价格数据和风险参数
-      </Cards.Card>
+  </Cards.Card>
       <Cards.Card title="与市场交互" href="#与市场交互">
         Move资源模型确保的资产交易安全和流动性
-      </Cards.Card>
+  </Cards.Card>
       <Cards.Card title="与治理交互" href="#与治理交互">
         基于Table结构的高效参数设置和资产配置
-      </Cards.Card>
-    </Cards>
+  </Cards.Card>
+</Cards>
   </Tabs.Tab>
 </Tabs>
 
@@ -1167,7 +1167,7 @@ module triplex::asset_registry {
   </Tabs.Tab>
   
   <Tabs.Tab>
-    <Steps>
+<Steps>
       1. **多源聚合**
          - Move不变量保障的多源数据加权聚合
          - Table结构支持的高效数据源筛选
@@ -1185,7 +1185,7 @@ module triplex::asset_registry {
          - 能力模式实现的安全更新权限
          - 资源模型保障的原子性价格更新
          - 不变量强制的合理性验证
-    </Steps>
+</Steps>
   </Tabs.Tab>
 </Tabs>
 
@@ -1402,7 +1402,7 @@ module triplex::asset_registry {
 
 ### 与其他系统交互
 
-<Steps>
+    <Steps>
   1. **池系统**
      - Move模块间安全调用的抵押品流动性获取
      - 能力模式控制的风险共享和管理接口
@@ -1498,20 +1498,20 @@ module triplex::asset_registry {
 
 <Tabs items={['铸造激励', '流动性激励', '预言机激励']}>
   <Tabs.Tab>
-    <Cards>
+<Cards>
       <Cards.Card title="铸造奖励" href="#铸造奖励">
         资源模型实现的动态铸造费用返还
-      </Cards.Card>
+  </Cards.Card>
       <Cards.Card title="持有奖励" href="#持有奖励">
         Table结构支持的长期持有者额外收益
-      </Cards.Card>
+  </Cards.Card>
       <Cards.Card title="推荐奖励" href="#推荐奖励">
         Move能力模式控制的用户推荐计划
-      </Cards.Card>
+  </Cards.Card>
       <Cards.Card title="早期用户奖励" href="#早期用户奖励">
         事件系统记录的早期贡献激励分配
-      </Cards.Card>
-    </Cards>
+  </Cards.Card>
+</Cards>
   </Tabs.Tab>
   
   <Tabs.Tab>
@@ -1831,7 +1831,7 @@ module triplex::asset_registry {
 
 <Tabs items={['安全设计', '权限控制', '紧急响应']}>
   <Tabs.Tab>
-    <Steps>
+<Steps>
       1. **形式化验证**
          - Move语言类型安全模型的静态验证
          - 资源所有权不变量的形式化证明
@@ -1849,9 +1849,9 @@ module triplex::asset_registry {
          - 不变量强制的状态完整性检查
          - 能力模式控制的调用权限验证
          - 类型安全保障的资产操作顺序
-    </Steps>
+</Steps>
   </Tabs.Tab>
-  
+
   <Tabs.Tab>
     ```move
     module triplex::access_control {
