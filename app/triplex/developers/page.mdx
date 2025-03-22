@@ -1,0 +1,242 @@
+---
+title: 开发者文档
+description: Triplex协议开发者资源和API文档
+---
+
+import { Callout, Tabs } from 'nextra/components'
+
+# 开发者文档
+
+欢迎使用Triplex开发者文档！本文档提供了集成Triplex协议所需的技术资源、API参考和示例代码。
+
+<Callout type="info">
+  Triplex采用模块化架构设计，支持灵活扩展和集成。我们鼓励开发者构建创新应用，扩展Triplex生态系统。
+</Callout>
+
+## 快速入门
+
+<div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
+  <div className="rounded-xl border border-gray-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900">
+    <h3 className="text-xl font-bold">智能合约集成</h3>
+    <p className="mt-2 text-gray-700 dark:text-gray-400">
+      了解如何与Triplex核心合约交互
+    </p>
+    <a href="./developers/contracts" className="mt-4 text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 inline-block">查看指南 →</a>
+  </div>
+  
+  <div className="rounded-xl border border-gray-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900">
+    <h3 className="text-xl font-bold">SDK使用</h3>
+    <p className="mt-2 text-gray-700 dark:text-gray-400">
+      使用Triplex SDK快速构建应用
+    </p>
+    <a href="./developers/sdk" className="mt-4 text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 inline-block">查看文档 →</a>
+  </div>
+</div>
+
+## 核心组件
+
+Triplex协议由以下核心组件组成：
+
+<Tabs items={['合成资产系统', '去中心化交易', '抵押品管理', '预言机网络']}>
+  <Tabs.Tab>
+    ```mermaid
+    graph TD
+        A[用户] -->|存入抵押品| B[抵押品管理模块]
+        B -->|验证抵押率| C[债务追踪模块]
+        C -->|记录债务| D[合成资产模块]
+        D -->|铸造合成资产| A
+        E[价格预言机] -->|提供价格数据| B
+        E -->|提供价格数据| C
+    ```
+    
+    合成资产系统负责管理抵押品、债务追踪和合成资产铸造。核心合约包括：
+    
+    - `SyntheticAssetModule.sol`: 合成资产铸造和销毁
+    - `CollateralManager.sol`: 抵押品管理
+    - `DebtTracker.sol`: 债务追踪和记账
+    - `LiquidationEngine.sol`: 清算机制实现
+  </Tabs.Tab>
+  
+  <Tabs.Tab>
+    ```mermaid
+    graph TD
+        A[交易者] -->|提交交易| B[交易路由器]
+        B -->|选择最佳路径| C[流动性池]
+        C -->|执行交易| D[结算模块]
+        D -->|完成交易| A
+        E[预言机网络] -->|价格数据| B
+        F[流动性提供者] -->|提供流动性| C
+    ```
+    
+    去中心化交易系统提供高效的资产交换功能。核心合约包括：
+    
+    - `Router.sol`: 交易路由和优化
+    - `LiquidityPool.sol`: 流动性池管理
+    - `SwapEngine.sol`: 交换逻辑实现
+    - `FeeDistributor.sol`: 费用收集和分配
+  </Tabs.Tab>
+  
+  <Tabs.Tab>
+    抵押品管理系统负责处理用户存入的抵押品。主要功能包括：
+    
+    - 多种抵押品支持（BTC、ETH、稳定币等）
+    - 动态抵押率调整
+    - 抵押品价值评估
+    - 清算触发条件监控
+    
+    关键合约：`CollateralVault.sol`, `CollateralRegistry.sol`
+  </Tabs.Tab>
+  
+  <Tabs.Tab>
+    预言机网络为系统提供可靠的价格数据：
+    
+    - 多来源数据聚合
+    - 价格偏差检测
+    - 数据延迟保护
+    - 防操纵机制
+    
+    Triplex集成了多个知名预言机网络，并实现了自定义聚合逻辑，确保价格数据的准确性和可靠性。
+  </Tabs.Tab>
+</Tabs>
+
+## API参考
+
+Triplex提供REST API和GraphQL API两种方式访问协议数据：
+
+<Tabs items={['REST API', 'GraphQL API']}>
+  <Tabs.Tab>
+    <div className="mt-4">
+      <h3 className="text-lg font-semibold">基础端点</h3>
+      <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">所有API请求的基础URL</p>
+      <div className="bg-gray-100 dark:bg-gray-800 p-2 rounded font-mono text-sm">
+        https://api.triplex.io/v1
+      </div>
+      
+      <h3 className="text-lg font-semibold mt-4">示例请求</h3>
+      <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">获取合成资产列表</p>
+      <div className="bg-gray-100 dark:bg-gray-800 p-2 rounded font-mono text-sm">
+        GET /synthetic-assets
+      </div>
+      
+      <h3 className="text-lg font-semibold mt-4">响应格式</h3>
+      <div className="bg-gray-100 dark:bg-gray-800 p-2 rounded font-mono text-sm">
+        {`{
+  "success": true,
+  "data": [
+    {
+      "symbol": "sBTC",
+      "address": "0x...",
+      "price": "28750.45",
+      "totalSupply": "1245.32"
+    },
+    {
+      "symbol": "sETH",
+      "address": "0x...",
+      "price": "1860.21",
+      "totalSupply": "15678.54"
+    }
+  ]
+}`}
+      </div>
+    </div>
+  </Tabs.Tab>
+  
+  <Tabs.Tab>
+    <div className="mt-4">
+      <h3 className="text-lg font-semibold">GraphQL端点</h3>
+      <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">GraphQL API端点</p>
+      <div className="bg-gray-100 dark:bg-gray-800 p-2 rounded font-mono text-sm">
+        https://api.triplex.io/graphql
+      </div>
+      
+      <h3 className="text-lg font-semibold mt-4">示例查询</h3>
+      <div className="bg-gray-100 dark:bg-gray-800 p-2 rounded font-mono text-sm overflow-auto">
+        {`query {
+  liquidityPools(first: 5, orderBy: tvl, orderDirection: desc) {
+    id
+    pairName
+    token0 {
+      symbol
+      decimals
+    }
+    token1 {
+      symbol
+      decimals
+    }
+    tvl
+    volume24h
+    feesEarned24h
+  }
+}`}
+      </div>
+    </div>
+  </Tabs.Tab>
+</Tabs>
+
+## SDK工具包
+
+Triplex SDK提供多种语言版本，帮助开发者快速集成Triplex协议：
+
+<div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+  <a
+    className="group flex flex-col justify-between rounded-lg border border-gray-200 p-4 hover:border-gray-300 dark:border-neutral-800 dark:hover:border-neutral-700"
+    href="./developers/sdk/javascript"
+  >
+    <h3 className="font-semibold">JavaScript SDK</h3>
+    <p className="mt-2 text-gray-600 dark:text-gray-400 text-sm">用于Web应用和Node.js</p>
+  </a>
+  
+  <a
+    className="group flex flex-col justify-between rounded-lg border border-gray-200 p-4 hover:border-gray-300 dark:border-neutral-800 dark:hover:border-neutral-700"
+    href="./developers/sdk/python"
+  >
+    <h3 className="font-semibold">Python SDK</h3>
+    <p className="mt-2 text-gray-600 dark:text-gray-400 text-sm">用于数据分析和脚本</p>
+  </a>
+  
+  <a
+    className="group flex flex-col justify-between rounded-lg border border-gray-200 p-4 hover:border-gray-300 dark:border-neutral-800 dark:hover:border-neutral-700"
+    href="./developers/sdk/rust"
+  >
+    <h3 className="font-semibold">Rust SDK</h3>
+    <p className="mt-2 text-gray-600 dark:text-gray-400 text-sm">高性能应用集成</p>
+  </a>
+</div>
+
+## 开发者资源
+
+<div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+  <a
+    className="group flex flex-col justify-between rounded-lg border border-gray-200 p-4 hover:border-gray-300 dark:border-neutral-800 dark:hover:border-neutral-700"
+    href="https://github.com/triplex-protocol"
+    target="_blank"
+  >
+    <h3 className="font-semibold">GitHub仓库</h3>
+    <p className="mt-2 text-gray-600 dark:text-gray-400 text-sm">探索Triplex的开源代码</p>
+  </a>
+  
+  <a
+    className="group flex flex-col justify-between rounded-lg border border-gray-200 p-4 hover:border-gray-300 dark:border-neutral-800 dark:hover:border-neutral-700"
+    href="https://discord.gg/triplex"
+    target="_blank"
+  >
+    <h3 className="font-semibold">开发者社区</h3>
+    <p className="mt-2 text-gray-600 dark:text-gray-400 text-sm">加入Discord获取支持</p>
+  </a>
+  
+  <a
+    className="group flex flex-col justify-between rounded-lg border border-gray-200 p-4 hover:border-gray-300 dark:border-neutral-800 dark:hover:border-neutral-700"
+    href="./developers/grants"
+  >
+    <h3 className="font-semibold">生态基金</h3>
+    <p className="mt-2 text-gray-600 dark:text-gray-400 text-sm">申请资金支持您的项目</p>
+  </a>
+  
+  <a
+    className="group flex flex-col justify-between rounded-lg border border-gray-200 p-4 hover:border-gray-300 dark:border-neutral-800 dark:hover:border-neutral-700"
+    href="./developers/bug-bounty"
+  >
+    <h3 className="font-semibold">漏洞赏金计划</h3>
+    <p className="mt-2 text-gray-600 dark:text-gray-400 text-sm">发现漏洞获得奖励</p>
+  </a>
+</div> 

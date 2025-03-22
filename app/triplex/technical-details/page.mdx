@@ -1,0 +1,254 @@
+---
+title: 技术细节
+description: 深入了解Triplex协议的技术架构、智能合约设计和安全机制
+---
+
+import { Callout, Tabs, Cards, Steps } from 'nextra/components'
+
+# 技术架构
+
+Triplex协议采用模块化、可扩展的技术架构，以确保系统的安全性、高效性和灵活性。
+
+## 核心组件
+
+<Cards num={3}>
+  <Cards.Card title="智能合约系统">
+    基于Move语言构建的合约系统，包括核心逻辑、资源管理和治理功能
+  </Cards.Card>
+  <Cards.Card title="预言机网络">
+    多源、去中心化的价格预言机集成，确保价格数据的准确性和可靠性
+  </Cards.Card>
+  <Cards.Card title="风险管理框架">
+    实时风险监控、清算引擎和安全保障机制的综合系统
+  </Cards.Card>
+</Cards>
+
+## 合约架构
+
+<Tabs items={['核心模块', '资产管理', '治理系统', '互操作性']}>
+  <Tabs.Tab>
+    **核心模块**由以下关键组件构成:
+    
+    ```move
+    // 简化示例代码
+    module Triplex::CoreSystem {
+        // 系统参数和配置
+        struct SystemParameters has key, store {
+            collateral_ratio: u64,
+            liquidation_threshold: u64,
+            // 其他参数...
+        }
+        
+        // 初始化系统
+        public fun initialize(admin: &signer) {
+            // 实现逻辑...
+        }
+        
+        // 更新系统参数
+        public fun update_parameters(
+            admin: &signer,
+            new_collateral_ratio: u64,
+            new_liquidation_threshold: u64
+        ) {
+            // 实现逻辑...
+        }
+    }
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    **资产管理**模块负责所有合成资产的创建、交易和清算:
+    
+    ```move
+    module Triplex::AssetManager {
+        // 合成资产定义
+        struct SyntheticAsset<phantom CoinType> has key, store {
+            value: u64,
+            collateral_amount: u64,
+            oracle_source: address,
+            // 其他属性...
+        }
+        
+        // 铸造合成资产
+        public fun mint<CoinType>(
+            account: &signer,
+            collateral_amount: u64,
+            synthetic_amount: u64
+        ) {
+            // 实现逻辑...
+        }
+        
+        // 赎回合成资产
+        public fun redeem<CoinType>(
+            account: &signer,
+            synthetic_amount: u64
+        ): u64 {
+            // 实现逻辑...
+        }
+    }
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    **治理系统**允许代币持有者参与决策:
+    
+    ```move
+    module Triplex::Governance {
+        // 提案结构
+        struct Proposal has key, store {
+            id: u64,
+            proposer: address,
+            description: vector<u8>,
+            execution_script: vector<u8>,
+            votes_for: u64,
+            votes_against: u64,
+            // 其他属性...
+        }
+        
+        // 创建新提案
+        public fun create_proposal(
+            proposer: &signer,
+            description: vector<u8>,
+            execution_script: vector<u8>
+        ): u64 {
+            // 实现逻辑...
+        }
+        
+        // 投票
+        public fun vote(
+            voter: &signer,
+            proposal_id: u64,
+            support: bool,
+            vote_amount: u64
+        ) {
+            // 实现逻辑...
+        }
+    }
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    **互操作性**模块实现与其他链和协议的互操作:
+    
+    ```move
+    module Triplex::Interoperability {
+        // 跨链资产桥接
+        struct BridgeConfig has key, store {
+            target_chain: vector<u8>,
+            bridge_address: address,
+            // 其他配置...
+        }
+        
+        // 发送资产到其他链
+        public fun bridge_asset<CoinType>(
+            sender: &signer,
+            target_chain: vector<u8>,
+            recipient: vector<u8>,
+            amount: u64
+        ) {
+            // 实现逻辑...
+        }
+    }
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+## 资产铸造流程
+
+下面是合成资产铸造的技术流程:
+
+<Steps>
+### 抵押品验证
+系统验证用户提供的抵押品价值和类型
+
+### 预言机查询
+从多个预言机源获取目标资产的价格数据
+
+### 抵押率计算
+根据预设的抵押率参数计算可铸造的最大合成资产数量
+
+### 资产铸造
+创建合成资产代币并分配给用户
+
+### 状态更新
+更新全局债务池和用户个人债务记录
+</Steps>
+
+## 安全机制
+
+### 多层防御
+
+Triplex协议采用多层防御策略保障系统安全:
+
+1. **形式化验证** - 核心合约经过数学形式化验证，确保逻辑正确性
+2. **多重审计** - 由多家知名安全审计公司进行代码审计
+3. **漏洞赏金计划** - 持续运行的漏洞赏金计划，鼓励安全研究者发现潜在问题
+4. **时间锁** - 所有重要升级都有时间锁定期，确保社区有足够时间审查
+
+### 价格预言机安全
+
+<Tabs items={['多源聚合', '防操纵机制', '故障检测']}>
+  <Tabs.Tab>
+    Triplex从多个独立的预言机源获取价格数据，包括:
+    
+    - Pyth Network
+    - Chainlink
+    - Band Protocol
+    - 内部TWAP计算
+    
+    通过聚合多个来源，系统能够过滤异常值并提供更可靠的价格数据。
+  </Tabs.Tab>
+  <Tabs.Tab>
+    为防止价格操纵，系统实施了多重安全机制:
+    
+    - 价格有效性检查，拒绝偏离过大的数据
+    - 时间加权平均价格(TWAP)机制
+    - 价格更新频率限制
+    - 异常价格变动的紧急暂停触发器
+  </Tabs.Tab>
+  <Tabs.Tab>
+    系统能够自动检测预言机故障并采取适当措施:
+    
+    - 实时监控每个预言机源的健康状态
+    - 自动切换到备用预言机当主要来源失效
+    - 极端情况下触发紧急暂停机制
+    - 治理可以快速干预并解决预言机问题
+  </Tabs.Tab>
+</Tabs>
+
+<Callout type="warning">
+  即使有多重安全机制，智能合约和预言机系统仍然存在固有风险。用户应了解相关风险并谨慎参与。
+</Callout>
+
+## 性能优化
+
+### Gas优化
+
+Triplex协议通过多种方式优化Gas使用:
+
+- 高效的数据存储设计
+- 批处理交易
+- 计算优化
+- 事件记录与链下索引的平衡使用
+
+### 可扩展性设计
+
+为支持未来增长，协议采用以下可扩展性设计:
+
+- 模块化架构允许独立升级各组件
+- 分层优化，将非关键计算移至链下
+- 状态分片支持未来分片扩展
+- 跨链互操作性为多链部署奠定基础
+
+## 开发路线图
+
+<Steps>
+### V1 - 核心功能 (当前阶段)
+基础合成资产铸造和交易、单一抵押品类型、基本治理
+
+### V2 - 增强功能 (计划中)
+多抵押品类型、高级交易功能、改进的风险管理、扩展预言机集成
+
+### V3 - 扩展功能 (规划中)
+跨链功能、复杂衍生品、合成资产组合、去中心化保险机制
+
+### V4 - 生态系统 (未来愿景)
+开发者工具、生态系统基金、更丰富的应用场景、更深度的现实世界资产整合
+</Steps> 

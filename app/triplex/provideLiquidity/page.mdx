@@ -1,0 +1,155 @@
+---
+title: 提供流动性
+description: 了解如何为Triplex协议提供流动性并获取收益
+---
+
+import { Steps, Callout, Tabs } from 'nextra/components'
+import { ArrowRightIcon } from 'nextra/icons'
+
+# 提供流动性
+
+为Triplex协议提供流动性是参与生态系统并获取回报的重要方式。流动性提供者可以通过存入资产到各种流动性池获得交易费分成和额外激励。
+
+<Callout type="info">
+  流动性提供者是Triplex生态系统的核心支柱，他们的参与确保交易执行高效、滑点最小化。
+</Callout>
+
+## 流动性池类型
+
+Triplex协议支持多种类型的流动性池：
+
+<div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
+  <div className="rounded-xl border border-gray-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900">
+    <h3 className="text-xl font-bold">合成资产池</h3>
+    <p className="mt-2 text-gray-700 dark:text-gray-400">
+      提供合成资产（如sBTC/sUSD）之间交易的流动性
+    </p>
+  </div>
+  
+  <div className="rounded-xl border border-gray-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900">
+    <h3 className="text-xl font-bold">桥接池</h3>
+    <p className="mt-2 text-gray-700 dark:text-gray-400">
+      支持合成资产与原生资产（如sBTC/BTC）之间交换的流动性
+    </p>
+  </div>
+  
+  <div className="rounded-xl border border-gray-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900">
+    <h3 className="text-xl font-bold">稳定币池</h3>
+    <p className="mt-2 text-gray-700 dark:text-gray-400">
+      专为稳定币交易（如sUSD/USDC/USDT）设计的低滑点高效率流动性池
+    </p>
+  </div>
+  
+  <div className="rounded-xl border border-gray-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900">
+    <h3 className="text-xl font-bold">跨链池</h3>
+    <p className="mt-2 text-gray-700 dark:text-gray-400">
+      促进不同链上相同合成资产之间桥接的流动性池
+    </p>
+  </div>
+</div>
+
+## 提供流动性流程
+
+<Steps>
+### 选择流动性池
+浏览可用的流动性池，并选择您想参与的池子
+
+### 准备资产
+确保您的钱包中有足够的资产用于提供流动性
+
+### 批准合约
+首次提供流动性时需要批准智能合约使用您的资产
+
+### 存入资产
+设置您想提供的资产数量，并确认交易
+
+### 获取LP代币
+成功提供流动性后，您将收到代表您池份额的LP代币
+</Steps>
+
+## 收益来源
+
+作为流动性提供者，您可以从多个渠道获得收益：
+
+<Tabs items={['交易费分成', 'TRT激励', '额外奖励']}>
+  <Tabs.Tab>
+    <div className="mt-4">
+      <p>Triplex上每笔交易都会收取0.1%-0.3%不等的交易费，其中50%-60%分配给流动性提供者：</p>
+      <ul className="mt-2 space-y-1 pl-6 list-disc">
+        <li>合成资产池：60%交易费分成</li>
+        <li>桥接池：50%交易费分成</li>
+        <li>稳定币池：55%交易费分成</li>
+        <li>跨链池：50%交易费分成</li>
+      </ul>
+    </div>
+  </Tabs.Tab>
+  
+  <Tabs.Tab>
+    <div className="mt-4">
+      <p>协议会根据池子的重要性和总锁仓价值分配TRT代币作为额外激励：</p>
+      <ul className="mt-2 space-y-1 pl-6 list-disc">
+        <li>每个流动性池有特定的TRT奖励权重</li>
+        <li>TRT奖励每区块分发</li>
+        <li>奖励根据您占池子份额比例计算</li>
+        <li>可以选择立即领取或锁定获得更高收益</li>
+      </ul>
+    </div>
+  </Tabs.Tab>
+  
+  <Tabs.Tab>
+    <div className="mt-4">
+      <p>除了基本收益外，流动性提供者还可以获得：</p>
+      <ul className="mt-2 space-y-1 pl-6 list-disc">
+        <li>活动奖励：特定时期的额外激励</li>
+        <li>推荐奖励：邀请其他用户参与</li>
+        <li>治理权益：参与协议决策</li>
+        <li>早期贡献者福利：长期支持者的专属奖励</li>
+      </ul>
+    </div>
+  </Tabs.Tab>
+</Tabs>
+
+## 风险提示
+
+<Callout type="warning">
+  提供流动性存在一定风险，请在参与前充分了解这些风险。
+</Callout>
+
+主要风险包括：
+
+- **无常损失**：当池中资产价格相对变化时可能出现的损失
+- **智能合约风险**：合约漏洞或错误的潜在风险
+- **市场风险**：资产价格波动带来的风险
+- **流动性风险**：在极端市场条件下提取流动性的困难
+
+<div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+  <h3 className="text-lg font-medium text-blue-800 dark:text-blue-300">无常损失计算器</h3>
+  <p className="mt-1 text-blue-700 dark:text-blue-400">
+    使用我们的<a href="../provideLiquidity/calculator" className="underline">无常损失计算器</a>评估不同市场情景下可能的收益和损失。
+  </p>
+</div>
+
+## 相关链接
+
+<div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+  <a
+    className="group flex flex-col justify-between rounded-lg border border-gray-200 p-4 hover:border-gray-300 dark:border-neutral-800 dark:hover:border-neutral-700"
+    href="../syntheticAssets"
+  >
+    <h3 className="font-semibold">合成资产</h3>
+  </a>
+  
+  <a
+    className="group flex flex-col justify-between rounded-lg border border-gray-200 p-4 hover:border-gray-300 dark:border-neutral-800 dark:hover:border-neutral-700"
+    href="../decentralizedTrading"
+  >
+    <h3 className="font-semibold">去中心化交易</h3>
+  </a>
+  
+  <a
+    className="group flex flex-col justify-between rounded-lg border border-gray-200 p-4 hover:border-gray-300 dark:border-neutral-800 dark:hover:border-neutral-700"
+    href="../trtStaking"
+  >
+    <h3 className="font-semibold">TRT 质押</h3>
+  </a>
+</div>

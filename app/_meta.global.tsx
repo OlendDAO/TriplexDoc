@@ -162,6 +162,20 @@ export default {
       }
     }
   },
+  triplex: {
+    type: 'page',
+    title: 'Triplex',
+    items: {
+      index: ''
+    }
+  },
+  architecturalanalysis: {
+    type: 'page',
+    title: 'Architectural Analysis',
+    items: {
+      index: ''
+    }
+  },
   versions: {
     type: 'menu',
     title: 'about',

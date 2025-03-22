@@ -1,11 +1,15 @@
 import nextra from 'nextra'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { remarkMermaid } from '@theguild/remark-mermaid'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const withNextra = nextra({
-  defaultShowCopyCode: true
+  defaultShowCopyCode: true,
+  mdxOptions: {
+    remarkPlugins: [remarkMermaid]
+  }
 })
 
 // 将主题配置移到这里
