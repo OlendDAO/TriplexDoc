@@ -1,4 +1,6 @@
 node_modules
+aptos-core
+developer-docs
 .next
 .env
 .env.local
