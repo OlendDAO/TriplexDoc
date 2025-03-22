@@ -6,6 +6,61 @@ import { Callout, Cards, FileTree, Steps, Tabs } from 'nextra/components'
   Triplex 的合成资产系统是协议的核心组件，在 Aptos 区块链上提供了多样化的链上合成资产解决方案。系统充分利用 Move 语言的资源安全模型、能力模式和类型参数化特性，确保资产的安全性、不可伪造性与互操作性。通过 Aptos 的高性能交易处理和 Move 的静态验证机制，实现了合成资产的高效创建、管理和交易。
 </Callout>
 
+## 从以太坊到Aptos的资产系统迁移
+
+Triplex 将 Synthetix 协议的合成资产系统从以太坊迁移到 Aptos 区块链，这一过程涉及编程范式和系统架构的根本性转变。
+
+<Tabs items={['迁移挑战', 'Move语言优势', '架构创新']}>
+  <Tabs.Tab>
+    <Steps>
+      1. **状态模型重构**
+         - 从 Solidity 的合约状态映射转为 Move 的资源模型
+         - 重新设计合成资产的存储结构和所有权模型
+         - 适配 Aptos 账户中心的存储方式
+      
+      2. **安全模式转换**
+         - 用 Move 能力代替 Solidity 修饰符实现访问控制
+         - 从基于异常的错误处理转向细粒度错误代码
+         - 利用 Move 类型系统实现更严格的资产安全
+      
+      3. **性能优化适配**
+         - 重新设计数据结构适应并行执行
+         - 优化存储访问模式提高吞吐量
+         - 利用 Move 泛型实现高效的类型安全代码
+    </Steps>
+  </Tabs.Tab>
+  
+  <Tabs.Tab>
+    <Cards>
+      <Cards.Card title="资源模型" href="#资源安全">
+        资产作为不可复制、不可随意创建的资源存在
+      </Cards.Card>
+      <Cards.Card title="类型系统" href="#类型安全">
+        强大的类型参数化支持多样化资产设计
+      </Cards.Card>
+      <Cards.Card title="能力模式" href="#权限控制">
+        细粒度权限控制提供更灵活安全的操作机制
+      </Cards.Card>
+      <Cards.Card title="形式化验证" href="#安全证明">
+        Move Prover支持代码正确性的数学证明
+      </Cards.Card>
+    </Cards>
+  </Tabs.Tab>
+  
+  <Tabs.Tab>
+    <Callout>
+      Triplex 不仅是简单迁移，而是对 Synthetix 架构的全面升级与创新，充分利用 Aptos 平台的独特优势。
+    </Callout>
+    
+    - **统一资产接口**：所有合成资产遵循统一标准，增强互操作性
+    - **账户中心设计**：资产直接存储在用户账户中，提升安全性和所有权明确性
+    - **并行化优化**：细粒度资源访问设计支持高并发操作
+    - **模块化架构**：功能独立的组件设计便于升级和扩展
+    - **全链治理**：利用 Move 能力模式实现安全的去中心化治理
+    - **高效索引**：使用 Table 结构支持复杂查询和高效数据访问
+  </Tabs.Tab>
+</Tabs>
+
 ## 系统架构
 
 <Tabs items={['概述', '资产流程', '组件交互']}>

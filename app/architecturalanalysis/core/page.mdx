@@ -6,6 +6,133 @@ import { Callout, Cards, FileTree, Steps, Tabs } from 'nextra/components'
   Triplex 的核心系统基于 Aptos 区块链的 Move 虚拟机实现，提供系统的基础功能和核心逻辑，包括模块管理、状态存储和系统配置，充分利用 Move 的资源导向模型和安全特性。
 </Callout>
 
+## 从以太坊到Aptos的核心系统转换
+
+将 Synthetix 核心系统从以太坊迁移到 Aptos 平台需要彻底重构系统架构，适应两个平台之间的根本差异。这种转换不仅是简单的代码翻译，而是对整个系统设计理念的重新思考。
+
+<Tabs items={['架构转变', '能力与权限', '编程模式', '状态管理']}>
+  <Tabs.Tab>
+    ### 从合约中心到模块资源架构
+    
+    **以太坊 Synthetix:**
+    - 基于合约的分层系统，依赖代理合约实现升级
+    - 通过 `Owned` 合约和修饰符控制访问权限
+    - 状态数据存储在合约变量中
+    - 通过事件实现链下状态跟踪
+    
+    **Aptos Triplex:**
+    - 基于模块和资源的组织结构
+    - 功能明确分离到专用模块中
+    - 状态数据作为资源存储在特定账户中
+    - 利用资源能力控制权限
+    - 直接支持模块原地升级
+  </Tabs.Tab>
+  
+  <Tabs.Tab>
+    ### 权限与能力模型转换
+    
+    **以太坊 Synthetix:**
+    ```solidity
+    // 以太坊权限控制示例
+    contract Owned {
+        address public owner;
+        address public nominatedOwner;
+        
+        constructor(address _owner) {
+            owner = _owner;
+        }
+        
+        modifier onlyOwner {
+            require(msg.sender == owner, "Unauthorized");
+            _;
+        }
+        
+        function nominateNewOwner(address _owner) external onlyOwner {
+            nominatedOwner = _owner;
+        }
+    }
+    ```
+    
+    **Aptos Triplex:**
+    ```move
+    // Move能力模式示例
+    struct AdminCapability has key, store {}
+    
+    public fun require_admin(admin: &signer) {
+        assert!(exists<AdminCapability>(signer::address_of(admin)), 
+               error::permission_denied(E_NOT_AUTHORIZED));
+    }
+    
+    public fun execute_admin_action(admin: &signer, action_params: vector<u8>) acquires AdminCapability {
+        require_admin(admin);
+        // 执行需要管理员权限的操作
+    }
+    ```
+  </Tabs.Tab>
+  
+  <Tabs.Tab>
+    ### 编程模式迁移
+    
+    **类型系统转变:**
+    - 从 Solidity 的有限类型支持到 Move 强大的类型参数化
+    - 使用泛型实现高度可复用组件
+    - 利用结构体能力标记(`key`, `store`, `drop`, `copy`)控制资源行为
+    
+    **错误处理:**
+    - 从异常模型转变为错误代码模型
+    - 利用 assert! 和自定义错误码提供清晰错误信息
+    - 避免异常传播带来的不确定性
+    
+    **存储访问:**
+    - 从合约存储到全局存储和表结构
+    - 使用 `move_to`, `borrow_global`, `borrow_global_mut` 操作资源
+    - 利用 `Table` 结构实现高效键值存储
+  </Tabs.Tab>
+  
+  <Tabs.Tab>
+    ### 状态管理与存储
+    
+    **以太坊 Synthetix:**
+    ```solidity
+    // 以太坊状态存储示例
+    contract SynthetixState {
+        mapping(address => uint) public issuanceData;
+        mapping(bytes32 => uint) public currentIssuanceData;
+        
+        function setCurrentIssuanceData(bytes32 currencyKey, uint amount) external onlyAuthorized {
+            currentIssuanceData[currencyKey] = amount;
+        }
+    }
+    ```
+    
+    **Aptos Triplex:**
+    ```move
+    // Move状态存储示例
+    struct SystemState has key {
+        issuance_data: Table<address, u64>,
+        current_issuance: Table<vector<u8>, u64>,
+        last_update: u64,
+    }
+    
+    public fun set_current_issuance(
+        admin: &signer, 
+        currency_key: vector<u8>, 
+        amount: u64
+    ) acquires SystemState {
+        require_admin(admin);
+        let state = borrow_global_mut<SystemState>(@triplex);
+        table::upsert(&mut state.current_issuance, currency_key, amount);
+    }
+    ```
+    
+    **关键区别:**
+    - Move资源明确属于特定账户
+    - Table结构提供高效键值存储
+    - 静态类型系统提供更强的正确性保证
+    - 资源能力控制限制了状态的异常修改
+  </Tabs.Tab>
+</Tabs>
+
 ## Move 模块架构
 
 ### Aptos 模块系统概览
