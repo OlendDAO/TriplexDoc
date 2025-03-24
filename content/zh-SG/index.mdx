@@ -1,0 +1,27 @@
+---
+title: React 数据获取钩子
+searchable: false
+---
+
+import { Features } from '@app/_components/features'
+import { Callout } from 'nextra/components'
+
+# SWR
+
+<Features lang={props.params.lang} title={metadata.title} />
+
+"SWR" 名称来源于 `stale-while-revalidate`，这是一种由 [HTTP RFC 5861](https://tools.ietf.org/html/rfc5861) 推广的 HTTP 缓存失效策略。SWR 是一种策略，它首先从缓存返回数据（陈旧的），然后发送请求（重新验证），最终返回最新的数据。
+
+<Callout emoji="✅">
+  通过 SWR，组件将获得一个**持续**且**自动更新**的数据流。
+
+用户界面将始终保持**快速**且**响应式**。
+
+</Callout>
+
+<div className="mt-16 mb-20 text-center">
+  [开始使用](/docs/getting-started) · [示例](/examples/basic) ·
+  [博客](/blog) · [Triplex架构分析](/zh-SG/architecturalanalysis) · [GitHub 仓库](https://github.com/vercel/swr)
+</div>
+
+## 概述
