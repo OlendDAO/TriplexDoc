@@ -10,5 +10,9 @@ export default {
   architecturalanalysis: {
     type: 'page',
     title: 'Triplex Architecture Analysis'
+  },
+  TriplexProtocol: {
+    type: 'page',
+    title: 'Triplex Protocol Analysis'
   }
 }

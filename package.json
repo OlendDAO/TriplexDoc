@@ -1,7 +1,6 @@
 {
-  "name": "swr-site",
+  "name": "triplex-site",
   "type": "module",
-  "author": "Shu Ding",
   "license": "Apache-2.0",
   "private": true,
   "scripts": {

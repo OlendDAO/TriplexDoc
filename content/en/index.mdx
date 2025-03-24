@@ -1,130 +1,68 @@
 ---
-title: React Hooks for Data Fetching
+title: Decentralized Liquidity Provisioning Protocol
 searchable: false
 ---
 
-import { Features } from '@app/_components/features'
 import { Callout, Tabs } from 'nextra/components'
+import { Features } from '@app/_components/features'
+import { SwrIcon } from '@app/_icons'
 
-# SWR
+# Triplex
 
-<Features lang={props.params.lang} title={metadata.title} />
+Triplex is a decentralized liquidity provisioning protocol built on Aptos and other compatible chains, offering a modular architecture and flexible liquidity provision system. It introduces an innovative DeFi framework that addresses challenges faced by traditional on-chain derivatives platforms, such as liquidity acquisition and infrastructure scaling.
 
-<Tabs items={['JavaScript', 'C++', {label:'C', disabled: true}, 'Python', 'TypeScript', 'GraphQL', 'Rust', 'C#', 'Go', 'HTML', 'CSS', 'plaintext', 'bash']} defaultIndex={1}>
-  <Tabs.Tab>
-    ```js filename="hi.js"
-    import { useState, useEffect } from 'react';
-    ```
-  </Tabs.Tab>
-  <Tabs.Tab>
-    ```cpp filename="hi.cpp"
-    #include <iostream>
-    ```
-  </Tabs.Tab>
-  <Tabs.Tab>
-    ```c filename="hi.c"
-    #include <stdio.h>
-    ```
-  </Tabs.Tab>
-  <Tabs.Tab>
-    ```c filename="hi.c"
-    #include <stdio.h>
-    ```
-  </Tabs.Tab>
-</Tabs>
-
-The name "SWR" is derived from `stale-while-revalidate`, a HTTP cache
-invalidation strategy popularized by
-[HTTP RFC 5861](https://tools.ietf.org/html/rfc5861). SWR is a strategy to first
-return the data from cache (stale), then send the fetch request (revalidate),
-and finally come with the up-to-date data.
-
-<Callout emoji="✅">
-  With SWR, components will get a stream of data updates **constantly** and
-  **automatically**.
-
-And the UI will be always **fast** and **reactive**.
-
-</Callout>
+With Triplex, users can experience more efficient capital utilization, more flexible risk exposure, and a new level of interoperability.
 
 <div className="mt-16 mb-20 text-center">
   [Get Started](/docs/getting-started) · [Examples](/examples/basic) ·
-  [Blog](/blog) · [GitHub Repository](https://github.com/vercel/swr)
+  [Blog](/blog) · [GitHub Repository](https://github.com/triplexlabs/triplex)
 </div>
 
-## Overview
+<Features lang={props.params.lang} title={metadata.title} />
+
+## How Does It Work?
 
 ```jsx
-import useSWR from 'swr'
+import { useAccount } from '@triplexjs/hooks'
 
-function Profile() {
-  const { data, error } = useSWR('/api/user', fetcher)
-
-  if (error) return <div>failed to load</div>
-  if (!data) return <div>loading...</div>
-  return <div>hello {data.name}!</div>
-}
+// Get account balance, liquidity, positions, etc.
+const { data } = useAccount()
 ```
 
-```diff
-import useSWR from 'swr'
+Triplex's frontend integration provides an intuitive user experience. By using our React hooks, you can easily integrate Triplex functionality into your application.
 
-function Profile() {
-  const { data, error } = useSWR('/api/user', fetcher)
+```jsx
+import { useMarket } from '@triplexjs/hooks'
 
--  if (error) return <div>failed to load</div>
-+  if (!data) return <div>loading...</div>
-  return <div>hello {data.name}!</div>
-}
+// Get market data
+const { data } = useMarket('BTC-USDC')
 ```
 
-In this example, the `useSWR` hook accepts a `key` string and a `fetcher`
-function. `key` is a unique identifier of the data (normally the API URL) and
-will be passed to `fetcher`. `fetcher` can be any asynchronous function which
-returns the data, you can use the native fetch or tools like Axios.
+## Ecosystem
 
-The hook returns 2 values: `data` and `error`, based on the status of the
-request.
+Triplex V3 consists of multiple core components: Vaults, Pools, Markets, and Rewards Allocators. These components work together to provide users with a highly flexible DeFi experience.
 
-## Features
+Our growing ecosystem includes:
 
-With just one single line of code, you can simplify the logic of data fetching
-in your project, and also have all these amazing features out-of-the-box:
+- Perpetual contract trading
+- Leverage tokens
+- Synthetic assets
+- Governance
+- Various integration options
 
-- **Fast**, **lightweight** and **reusable** data fetching
-- Built-in **cache** and request deduplication
-- **Real-time** experience
-- Transport and protocol agnostic
-- SSR / ISR / SSG support
-- TypeScript ready
-- React Native
+<Callout>
+  Join the Triplex community to stay updated and participate in the platform's development!
+</Callout>
 
-SWR has you covered in all aspects of speed, correctness, and stability to help
-you build better experiences:
+<div className="mt-16 mb-20 text-center">
+  [Get Started](/docs/getting-started) · [Examples](/examples/basic) · [Blog](/blog) · [Team](/team)
+</div>
 
-- Fast page navigation
-- Polling on interval
-- Data dependency
-- Revalidation on focus
-- Revalidation on network recovery
-- Local mutation (Optimistic UI)
-- Smart error retry
-- Pagination and scroll position recovery
-- React Suspense
-
-And a lot [more](/docs/getting-started).
-
-## Community
-
-<p className="mt-6 flex h-6 gap-2">
-  <img alt="stars" src="https://badgen.net/github/stars/vercel/swr" />
-  <img alt="downloads" src="https://badgen.net/npm/dt/swr" />
+<div className="mt-32 flex flex-wrap gap-3 items-center">
+  <img alt="stars" src="https://badgen.net/github/stars/triplexlabs/triplex" />
   <img alt="license" src="https://badgen.net/npm/license/swr" />
-</p>
+</div>
 
-SWR is created by the same team behind [Next.js](https://nextjs.org), the React
-framework. Follow [@vercel](https://twitter.com/vercel) on Twitter for future
-project updates.
-
-Feel free to join the
-[discussions on GitHub](https://github.com/vercel/swr/discussions)!
+<div className="mb-10 mt-4 text-gray-600 dark:text-gray-400 text-sm">
+  Triplex V3 was redesigned and launched on Aptos in 2024 by Triplex Labs Inc.
+</div>

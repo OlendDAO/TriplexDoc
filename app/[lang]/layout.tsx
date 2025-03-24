@@ -18,21 +18,21 @@ import './styles.css'
 
 export const metadata: Metadata = {
   description:
-    'SWR is a React Hooks library for data fetching. SWR first returns the data from cache (stale), then sends the fetch request (revalidate), and finally comes with the up-to-date data again.',
+    'Triplex是建立在Aptos上的去中心化流动性提供协议，提供模块化架构和灵活的流动性提供系统。',
   title: {
     absolute: '',
-    template: '%s | SWR'
+    template: '%s | Triplex'
   },
-  metadataBase: new URL('https://swr.vercel.app'),
+  metadataBase: new URL('https://triplex.fi'),
   openGraph: {
     images:
       'https://assets.vercel.com/image/upload/v1572282926/swr/twitter-card.jpg'
   },
   twitter: {
-    site: '@vercel'
+    site: '@triplex_io'
   },
   appleWebApp: {
-    title: 'SWR'
+    title: 'Triplex'
   },
   other: {
     'msapplication-TileColor': '#fff'
@@ -57,8 +57,8 @@ export default async function RootLayout({ children, params }) {
     ]
   }
   const banner = (
-    <Banner storageKey="swr-2">
-      SWR 2.0 is out! <Link href="#">Read more →</Link>
+    <Banner storageKey="triplex-launch">
+      Triplex 已在Aptos测试网上线！ <Link href="#">了解更多 →</Link>
     </Banner>
   )
   const navbar = (
@@ -68,14 +68,14 @@ export default async function RootLayout({ children, params }) {
           <SwrIcon height="12" />
           <span
             className="ms-2 font-extrabold select-none max-md:hidden"
-            title={`SWR: ${dictionary.logo.title}`}
+            title={`Triplex: ${dictionary.logo.title}`}
           >
-            SWR
+            Triplex
           </span>
         </>
       }
-      projectLink="https://github.com/vercel/swr"
-      chatLink="https://discord.com"
+      projectLink="https://github.com/triplexlabs/triplex"
+      chatLink="https://discord.gg/triplex"
     >
       <LocaleSwitch lite />
     </Navbar>

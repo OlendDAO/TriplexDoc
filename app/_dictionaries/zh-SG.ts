@@ -7,21 +7,21 @@ export default {
   backToTop: '回到顶部',
   lastUpdated: '最后更新于',
   logo: {
-    title: 'React 数据获取钩子'
+    title: '去中心化流动性协议'
   },
   // notFound: '找不到此页面',
   poweredBy: '技术支持',
   link: {
-    vercel: 'https://vercel.com/?utm_source=swr_zh-SG'
+    vercel: 'https://vercel.com/?utm_source=triplex_zh-SG'
   },
-  lightweight: '轻量级',
+  lightweight: '高效',
   realtime: '实时',
-  suspense: '悬停',
+  suspense: '流畅',
   pagination: '分页',
-  backendAgnostic: '后端无关',
-  renderingStrategies: 'SSR / SSG',
-  typescript: 'TypeScript',
-  remoteLocal: '远程 + 本地',
+  backendAgnostic: '跨链兼容',
+  renderingStrategies: '模块化架构',
+  typescript: 'Move语言',
+  remoteLocal: '链上 + 链下',
   editPage: '在 GitHub 上编辑此页面',
   by: '由'
 } satisfies Dictionary 

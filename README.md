@@ -1,1 +1,1 @@
-# SWR i18n Example Website
+# Triplex i18n文档网站
