@@ -1,0 +1,232 @@
+import { Steps, Callout, Tabs, Tab } from 'nextra/components'
+import { Cards, Card } from 'nextra/components'
+
+# 预言机系统
+
+<Callout type="info">
+  预言机系统是Triplex协议的核心基础设施，为协议提供可靠的价格数据源，是交易和清算等关键功能的基础。
+</Callout>
+
+## 系统概述
+
+预言机系统负责为Triplex协议提供安全可靠的价格数据。该系统支持多种预言机源，并提供价格安全检查机制，确保系统能够抵御价格操纵和异常波动风险。
+
+## 核心功能
+
+<Cards>
+  <Card title="多源预言机" href="#多源预言机支持">
+    支持内部、外部和混合预言机，提供灵活的价格源配置
+  </Card>
+  <Card title="价格安全检查" href="#价格安全机制">
+    多层次的价格有效性验证和异常检测机制
+  </Card>
+  <Card title="适配器模式" href="#预言机适配器">
+    灵活对接不同预言机源的标准化接口
+  </Card>
+  <Card title="价格回退机制" href="#价格查询流程">
+    当价格不可用或不安全时提供历史安全价格
+  </Card>
+</Cards>
+
+## 组件架构
+
+<Tabs items={['预言机接口', '预言机核心', '预言机适配器', '价格安全检查', '事件系统']}>
+  <Tab>
+    **oracle_interface.move**
+    
+    定义预言机系统的基础数据结构和接口:
+    
+    - 预言机类型常量：内部、外部和混合预言机
+    - 预言机状态常量：活跃、弃用和暂停
+    - 价格来源常量：现货、期货、TWAP和综合价格
+    - 价格信息结构和操作函数
+  </Tab>
+  <Tab>
+    **oracle.move**
+    
+    实现预言机的核心功能:
+    
+    - 预言机系统状态管理：初始化、暂停和恢复
+    - 预言机注册和状态更新
+    - 资产价格更新和查询
+    - 安全检查：状态、有效期、置信度等
+  </Tab>
+  <Tab>
+    **oracle_adapter.move**
+    
+    提供适配不同预言机源的机制:
+    
+    - 预言机适配器注册和管理
+    - 资产配置和预言机分配
+    - 价格转换和偏移调整
+    - 安全价格查询接口
+  </Tab>
+  <Tab>
+    **price_safety.move**
+    
+    提供价格有效性和安全验证:
+    
+    - 价格安全配置：有效期、置信度、波动限制
+    - 价格偏差检测和异常波动保护
+    - 历史价格记录和比较
+    - 安全价格回退机制
+  </Tab>
+  <Tab>
+    **events.move (预言机部分)**
+    
+    定义预言机相关的事件:
+    
+    - 系统初始化、暂停和恢复事件
+    - 预言机注册和状态更新事件
+    - 资产价格更新事件
+  </Tab>
+</Tabs>
+
+## 关键功能详解
+
+### 多源预言机支持
+
+<Steps>
+  ### 内部预言机
+  协议内部生成的价格，如基于流动性池计算的价格
+  
+  ### 外部预言机
+  外部提供的价格源，如Chainlink、Pyth等
+  
+  ### 混合预言机
+  综合多个价格源的数据，提供更可靠的价格参考
+  
+  ### 适配器机制
+  通过预言机适配器，灵活配置不同资产使用的价格源
+</Steps>
+
+### 价格安全机制
+
+系统实现了多层价格安全检查：
+
+<div className="grid grid-cols-2 gap-4 mt-4">
+  <div className="rounded-lg border border-gray-200 p-4">
+    <h4 className="font-bold">基础验证</h4>
+    <p>检查价格是否为零、预言机是否活跃</p>
+  </div>
+  <div className="rounded-lg border border-gray-200 p-4">
+    <h4 className="font-bold">时效性验证</h4>
+    <p>检查价格是否在有效期内</p>
+  </div>
+  <div className="rounded-lg border border-gray-200 p-4">
+    <h4 className="font-bold">置信度验证</h4>
+    <p>检查价格置信度是否满足要求</p>
+  </div>
+  <div className="rounded-lg border border-gray-200 p-4">
+    <h4 className="font-bold">价格范围验证</h4>
+    <p>检查价格是否在合理范围内</p>
+  </div>
+  <div className="rounded-lg border border-gray-200 p-4 col-span-2">
+    <h4 className="font-bold">波动检测</h4>
+    <p>检查价格变化是否超过允许范围，防止价格操纵</p>
+  </div>
+</div>
+
+### 权限管理
+
+<Callout type="warning">
+  预言机系统对各种操作实施了严格的权限控制，确保系统安全和数据可靠性。
+</Callout>
+
+- **系统管理功能**：仅限协议管理员
+- **预言机管理**：仅限预言机管理员
+- **价格更新**：仅限经授权的喂价账户
+
+## 实现流程
+
+### 价格更新流程
+
+<Steps>
+  ### 授权账户调用更新
+  授权账户调用`update_asset_price`函数更新价格
+  
+  ### 权限和状态验证
+  系统验证调用者权限和预言机状态
+  
+  ### 价格数据验证
+  系统验证价格来源、置信度和价格值
+  
+  ### 价格更新
+  系统更新价格并记录历史价格
+  
+  ### 事件发布
+  系统发出价格更新事件
+</Steps>
+
+### 价格查询流程
+
+<Steps>
+  ### 请求价格
+  调用方请求资产价格
+  
+  ### 查找配置
+  系统检查资产配置和适配器设置
+  
+  ### 获取原始价格
+  系统获取原始价格数据
+  
+  ### 安全验证
+  价格安全模块验证价格有效性
+  
+  ### 价格调整
+  系统应用价格调整（如果配置）
+  
+  ### 返回结果
+  返回最终价格给调用方
+</Steps>
+
+## 安全考量
+
+<details className="mt-4">
+  <summary className="cursor-pointer font-bold">模块化设计</summary>
+  <p className="p-4">分离核心逻辑和安全检查，降低系统复杂性，便于审计和升级</p>
+</details>
+
+<details>
+  <summary className="cursor-pointer font-bold">多源验证</summary>
+  <p className="p-4">支持多个预言机源，减少单点故障风险，提高数据可靠性</p>
+</details>
+
+<details>
+  <summary className="cursor-pointer font-bold">安全回退</summary>
+  <p className="p-4">价格异常时使用历史安全价格，确保系统继续运行</p>
+</details>
+
+<details>
+  <summary className="cursor-pointer font-bold">事件记录</summary>
+  <p className="p-4">全面记录系统状态变更，便于审计和监控异常行为</p>
+</details>
+
+<details>
+  <summary className="cursor-pointer font-bold">参数化控制</summary>
+  <p className="p-4">可配置的安全参数，适应不同资产的风险特性和价格波动特征</p>
+</details>
+
+## 未来扩展
+
+<Cards>
+  <Card title="更多预言机源">
+    添加更多预言机源适配器，扩展价格来源
+  </Card>
+  <Card title="复杂聚合策略">
+    实现更复杂的价格聚合策略，提高数据质量
+  </Card>
+  <Card title="异常检测">
+    添加自动价格异常检测和警报机制
+  </Card>
+  <Card title="TWAP计算">
+    实现时间加权平均价格（TWAP）计算
+  </Card>
+  <Card title="扩展指标">
+    添加更多价格指标，如波动率和趋势指标
+  </Card>
+</Cards>
+
+<Callout type="error" className="mt-8">
+  预言机系统是协议的关键组件，任何修改都应经过充分测试和审计，以确保系统安全和稳定。
+</Callout> 
