@@ -1,163 +1,163 @@
-# 风险管理
+# Risk Management
 
-## 风险控制体系
+## Risk Control System
 
-### 多层级风险防护
+### Multi-layer Risk Protection
 
 ```mermaid
 graph TD
-    A[风险控制体系] --> B[账户级风险控制]
-    A --> C[系统级风险控制]
-    A --> D[市场级风险控制]
-    B --> E[保证金管理]
-    B --> F[持仓限制]
-    C --> G[价格保护]
-    C --> H[流动性管理]
-    D --> I[波动率控制]
-    D --> J[保险基金]
+    A[Risk Control System] --> B[Account-level Control]
+    A --> C[System-level Control]
+    A --> D[Market-level Control]
+    B --> E[Margin Management]
+    B --> F[Position Limits]
+    C --> G[Price Protection]
+    C --> H[Liquidity Management]
+    D --> I[Volatility Control]
+    D --> J[Insurance Fund]
 ```
 
-## 账户风险管理
+## Account Risk Management
 
-### 保证金系统
-1. **初始保证金要求**
-   - 基础保证金率
-   - 动态调整机制
-   - 分层保证金要求
+### Margin System
+1. **Initial Margin Requirements**
+   - Base margin rate
+   - Dynamic adjustment mechanism
+   - Tiered margin requirements
 
-2. **维持保证金要求**
-   - 最低维持保证金
-   - 风险等级划分
-   - 预警机制
+2. **Maintenance Margin Requirements**
+   - Minimum maintenance margin
+   - Risk level classification
+   - Warning mechanism
 
-3. **追加保证金流程**
-   - 预警通知
-   - 追加时限
-   - 自动追加选项
+3. **Margin Call Process**
+   - Warning notifications
+   - Top-up timeframe
+   - Automated top-up options
 
-### 持仓限制
-- 单个账户最大持仓
-- 单个市场最大持仓
-- 杠杆倍数限制
+### Position Limits
+- Maximum position per account
+- Maximum position per market
+- Leverage limits
 
-## 清算机制
+## Liquidation Mechanism
 
-### 清算触发条件
-- 账户权益低于维持保证金
-- 市场剧烈波动
-- 系统风险预警
+### Liquidation Triggers
+- Account equity below maintenance margin
+- Severe market volatility
+- System risk alerts
 
-### 清算流程
-1. 风险预警
-2. 账户冻结
-3. 清算价格计算
-4. 仓位平仓
-5. 保证金处理
-6. 清算完成确认
+### Liquidation Process
+1. Risk warning
+2. Account freeze
+3. Liquidation price calculation
+4. Position closure
+5. Margin processing
+6. Liquidation confirmation
 
-### 部分清算
-- 触发条件
-- 执行优先级
-- 保证金分配
+### Partial Liquidation
+- Trigger conditions
+- Execution priority
+- Margin allocation
 
-## 价格保护机制
+## Price Protection Mechanism
 
-### 价格来源
-- 多源价格聚合
-- 异常值过滤
-- 权重动态调整
+### Price Sources
+- Multi-source price aggregation
+- Outlier filtering
+- Dynamic weight adjustment
 
-### 价格更新
-- 实时更新机制
-- 延迟保护
-- 备份方案
+### Price Updates
+- Real-time update mechanism
+- Delay protection
+- Backup solutions
 
-### 价格偏离保护
-- 最大偏离限制
-- 自动暂停机制
-- 恢复流程
+### Price Deviation Protection
+- Maximum deviation limits
+- Automatic suspension mechanism
+- Recovery process
 
-## 流动性风险管理
+## Liquidity Risk Management
 
-### 流动性监控
-- 实时深度监控
-- 流动性预警
-- 自动干预机制
+### Liquidity Monitoring
+- Real-time depth monitoring
+- Liquidity alerts
+- Automated intervention mechanism
 
-### 流动性提供者管理
-- LP资质要求
-- 风险限制
-- 激励机制
+### Liquidity Provider Management
+- LP qualification requirements
+- Risk limits
+- Incentive mechanisms
 
-### 紧急流动性方案
-- 备用流动性池
-- 紧急流动性提供
-- 市场干预机制
+### Emergency Liquidity Plans
+- Backup liquidity pools
+- Emergency liquidity provision
+- Market intervention mechanisms
 
-## 系统风险控制
+## System Risk Control
 
-### 交易限制
-- 最大订单规模
-- 价格波动限制
-- 交易频率限制
+### Trading Restrictions
+- Maximum order size
+- Price fluctuation limits
+- Trading frequency limits
 
-### 系统容量管理
-- 订单队列管理
-- 系统负载监控
-- 自动扩容机制
+### System Capacity Management
+- Order queue management
+- System load monitoring
+- Automatic scaling mechanism
 
-### 紧急响应
-- 交易暂停触发
-- 系统降级方案
-- 恢复流程
+### Emergency Response
+- Trading suspension triggers
+- System degradation plans
+- Recovery procedures
 
-## 保险基金
+## Insurance Fund
 
-### 基金管理
-- 资金来源
-- 使用规则
-- 规模管理
+### Fund Management
+- Funding sources
+- Usage rules
+- Size management
 
-### 动态调整
-- 风险评估
-- 费率调整
-- 补充机制
+### Dynamic Adjustment
+- Risk assessment
+- Rate adjustment
+- Replenishment mechanism
 
-### 使用流程
-- 触发条件
-- 资金分配
-- 记录追踪
+### Usage Process
+- Trigger conditions
+- Fund allocation
+- Record tracking
 
-## 风险监控系统
+## Risk Monitoring System
 
-### 实时监控
-- 关键指标监控
-- 异常检测
-- 预警系统
+### Real-time Monitoring
+- Key metrics monitoring
+- Anomaly detection
+- Alert system
 
-### 风险报告
-- 日常风险报告
-- 事件分析
-- 改进建议
+### Risk Reporting
+- Daily risk reports
+- Incident analysis
+- Improvement suggestions
 
-### 应急预案
-- 预案分级
-- 响应流程
-- 恢复机制
+### Emergency Plans
+- Plan classification
+- Response procedures
+- Recovery mechanisms
 
-## 治理与升级
+## Governance and Upgrades
 
-### 风险参数治理
-- 参数调整流程
-- 社区投票
-- 实施时间表
+### Risk Parameter Governance
+- Parameter adjustment process
+- Community voting
+- Implementation timeline
 
-### 系统升级
-- 升级提案
-- 安全审计
-- 分步实施
+### System Upgrades
+- Upgrade proposals
+- Security audits
+- Phased implementation
 
-### 紧急处理
-- 紧急委员会
-- 快速决策机制
-- 后续追踪 
+### Emergency Handling
+- Emergency committee
+- Rapid decision mechanism
+- Follow-up tracking 
