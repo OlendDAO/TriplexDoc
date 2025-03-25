@@ -1,0 +1,86 @@
+{
+  "name": "root",
+  "version": "3.0.0",
+  "workspaces": [
+    "**/*"
+  ],
+  "private": true,
+  "scripts": {
+    "start": "yarn workspace @_/staking start",
+    "build": "yarn workspace @_/staking build",
+    "cy": "yarn workspace @_/staking-cypress cy",
+    "e2e": "yarn workspace @_/staking-cypress e2e",
+    "e2e:run": "yarn workspace @_/staking-cypress e2e:run",
+    "lint": "biome check .",
+    "lint:fix": "biome check --unsafe --write .",
+    "clean": "yarn workspaces foreach --all --parallel exec rm -rf dist coverage build && find . -name 'tsconfig.tsbuildinfo' -delete",
+    "test": "jest",
+    "typecheck": "tsc --noEmit",
+    "deps": "deps",
+    "deps:fix": "deps --fix",
+    "deps:mismatched": "deps-mismatched",
+    "deps:circular": "deps-circular",
+    "deps:version": "deps-version",
+    "upgrade-browsers": "yarn up browserslist caniuse-lite --recursive && yarn dedupe",
+    "upgrade-contracts": "yarn up @synthetixio/v3-contracts --recursive && yarn dedupe",
+    "svg": "svgo --config svgo.config.js --recursive ./",
+    "svg:check": "yarn svg && git diff --exit-code **/*.svg",
+    "download-cci-coverage": "download-cci-coverage"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.6",
+    "@babel/preset-env": "^7.24.6",
+    "@babel/preset-react": "^7.24.6",
+    "@babel/preset-typescript": "^7.24.6",
+    "@biomejs/biome": "^1.9.4",
+    "@synthetixio/deps": "workspace:*",
+    "@types/big.js": "^6.2.2",
+    "@types/debug": "^4.1.12",
+    "@types/jest": "^29.5.8",
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.37",
+    "@types/react-helmet": "^6.1.9",
+    "babel-jest": "^29.7.0",
+    "husky": "^8.0.3",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "jest-junit": "^16.0.0",
+    "lint-staged": "^15.1.0",
+    "nyc": "^15.1.0",
+    "svgo": "^3.2.0",
+    "typescript": "^5.6.2"
+  },
+  "browserslist": [
+    "last 1 Chrome version",
+    "last 1 Firefox version",
+    "last 1 Edge version",
+    "last 1 Opera version"
+  ],
+  "resolutions": {
+    "@emotion/is-prop-valid": "^1.2.0",
+    "@ethersproject/abi": "^5.7.0",
+    "@ethersproject/bignumber": "^5.7.0",
+    "@ethersproject/bytes": "^5.7.0",
+    "big.js": "^6.1.1",
+    "bn.js": "^5.2.1",
+    "browserslist": "4",
+    "caniuse-lite": "1",
+    "ethers": "^5.7.2",
+    "classnames": "2.3.2",
+    "viem": "^2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,ts,tsx}": [
+      "biome lint"
+    ]
+  },
+  "packageManager": "yarn@4.6.0",
+  "dependencies": {
+    "@synthetixio/spot-market": "^3.10.1"
+  }
+}

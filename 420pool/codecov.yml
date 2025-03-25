@@ -1,0 +1,29 @@
+codecov:
+  require_ci_to_pass: yes
+  notify:
+    wait_for_ci: yes
+
+github_checks:
+  annotations: no # for now let's not fail the build when coverage decreases
+
+comment:
+  layout: 'reach, diff, flags, files'
+  behavior: once
+  require_changes: false # if true: only post the comment if coverage changes
+
+ignore:
+  - '**/*.cy.*'
+  - '**/*.test.*'
+  - '**/*.e2e.*'
+  - '**/*.stories.*'
+  - '.circleci'
+  - '.github'
+  - 'tools'
+  - 'staking/cypress'
+  - 'contracts'
+  - 'staking/ui/assert-deployment.js'
+  - 'staking/ui/babel.config.js'
+  - 'staking/ui/jest.config.js'
+  - 'staking/ui/webpack.config.js'
+  - 'babel.config.js'
+  - 'jest.*.js'

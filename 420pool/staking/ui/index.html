@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="initial-scale=1, width=device-width" name="viewport" />
+    <meta content="ie=edge" http-equiv="X-UA-Compatible" />
+    <meta charset="utf-8" />
+
+    <title>Synthetix 420 Pool</title>
+    <meta name="description" content="Welcome to your final burn." />
+
+    <meta property="og:url" content="https://420.synthetix.io/">
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="https://420.synthetix.io/" />
+    <meta property="og:title" content="Synthetix 420 Pool" />
+    <meta property="og:description" content="Welcome to your final burn." />
+    <meta property="og:image" content="https://420.synthetix.io/420.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@synthetix_io" />
+    <meta name="twitter:title" content="Synthetix 420 Pool" />
+    <meta name="twitter:description" content="Welcome to your final burn." />
+    <meta name="twitter:image" content="https://420.synthetix.io/420.webp" />
+
+    <link rel="icon" href="favicon.ico" />
+    <!-- Matomo -->
+    <script>
+      var _paq = (window._paq = window._paq || []);
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+      _paq.push(["setCookieDomain", "*.synthetix.io"]);
+      _paq.push(['trackPageView']);
+     _paq.push(['enableLinkTracking']);
+      (function() {
+        var u = "https://analytics.synthetix.io/";
+        // Configure the primary tracker (site ID 11)
+        _paq.push(['setTrackerUrl', u + 'matomo.php']);
+        _paq.push(['setSiteId', '11']);
+        // Add the second tracker (site ID 10)
+        _paq.push(['addTracker', u + 'matomo.php', 10]);
+        var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+        g.async = true;
+        g.src = u + 'matomo.js';
+        s.parentNode.insertBefore(g, s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      (function () {
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src =
+          window.localStorage.UNSAFE_IMPORT === 'true' ? 'main.js' : `main.js?_=${Date.now()}`;
+        document.body.appendChild(script);
+      })();
+    </script>
+    <style>
+      :root {
+        --onboard-main-scroll-container-background: linear-gradient(
+          73.6deg,
+          #171923 2.11%,
+          #141414 100%
+        );
+        --onboard-connect-content-background: linear-gradient(73.6deg, #171923 2.11%, #141414 100%);
+        --onboard-connect-sidebar-background: linear-gradient(73.6deg, #171923 2.11%, #141414 100%);
+        --onboard-connect-header-background: linear-gradient(73.6deg, #171923 2.11%, #141414 100%);
+        --onboard-wallet-button-background: #2d2d3880;
+        --onboard-wallet-button-background-hover: #2d2d3850;
+        --onboard-wallet-app-icon-border-color: #ffffff29;
+        --onboard-connect-header-color: transparent;
+        --onboard-connect-sidebar-color: white;
+        --onboard-close-button-background: transparent;
+        --onboard-close-button-color: white;
+        --onboard-checkbox-background: #0b0b22;
+        --onboard-checkbox-color: white;
+        --onboard-connect-sidebar-progress-background: #ffffff;
+        --onboard-connect-sidebar-progress-color: #00d1ff;
+        --onboard-wallet-button-color: white;
+        --onboard-wallet-button-color-hover: white;
+        --onboard-wallet-button-border-color: #2d2d38;
+        --account-select-modal-font-family-normal: Inter;
+        --onboard-wallet-button-border-radius: 10px;
+        --w3o-border-color: transparent;
+      }
+      html body {
+        background-color: var(--chakra-colors-navy-700);
+      }
+    </style>
+  </body>
+</html>
