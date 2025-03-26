@@ -1,179 +1,179 @@
-# 债务结算机制
+# Debt Settlement Mechanism
 
-在Triplex的永续合约交易系统中，债务结算是一个核心功能，确保系统在各种市场条件下保持偿付能力。本文将详细解释债务结算的机制、过程以及对交易者的影响。
+In Triplex's perpetual contract trading system, debt settlement is a core function that ensures the system remains solvent under various market conditions. This article will explain the mechanism, process, and impact of debt settlement on traders in detail.
 
 import { Callout } from 'nextra/components'
 
-## 什么是债务结算？
+## What is Debt Settlement?
 
-债务结算是指在永续合约交易中，系统如何处理和清算用户因交易产生的债务的过程。在Triplex V3中，这一机制经过了重新设计，提供了更高的效率和更好的用户体验。
+Debt settlement refers to the process by which the system handles and clears the debts incurred by users during trading in perpetual contracts. In Triplex V3, this mechanism has been redesigned to offer greater efficiency and a better user experience.
 
 <Callout type="info">
-债务结算是Triplex确保系统稳定性和所有参与者公平性的关键机制。
+Debt settlement is a key mechanism for Triplex to ensure system stability and fairness for all participants.
 </Callout>
 
-## 债务类型
+## Types of Debt
 
-在Triplex系统中，债务可以分为几种主要类型：
+In the Triplex system, debt can be categorized into several main types:
 
-### 1. 交易债务
+### 1. Trading Debt
 
-当交易者开立头寸时，系统会记录其潜在的债务义务。这包括：
+When traders open positions, the system records their potential debt obligations. This includes:
 
-- **交易规模**：头寸的美元价值
-- **杠杆率**：使用的杠杆倍数
-- **保证金要求**：维持头寸所需的最低抵押品
+- **Trade Size**: The dollar value of the position
+- **Leverage**: The leverage multiple used
+- **Margin Requirements**: The minimum collateral required to maintain the position
 
-### 2. 未实现债务
+### 2. Unrealized Debt
 
-当市场价格变动对头寸不利时，交易者会累积未实现债务：
+When market price movements are unfavorable to a position, traders accumulate unrealized debt:
 
-- 对于多头头寸，当价格下跌时
-- 对于空头头寸，当价格上涨时
+- For long positions, when prices fall
+- For short positions, when prices rise
 
-### 3. 实现债务
+### 3. Realized Debt
 
-当发生以下情况时，未实现债务转变为实现债务：
+Unrealized debt becomes realized debt when:
 
-- 交易者手动平仓
-- 系统执行清算
-- 强制平仓事件
+- Traders manually close positions
+- The system executes liquidation
+- A forced closure event occurs
 
-## 债务结算流程
+## Debt Settlement Process
 
 import { Steps } from 'nextra/components'
 
 <Steps>
-### 债务识别
+### Debt Identification
 
-系统持续监控所有账户的债务状况和健康度。
+The system continuously monitors the debt status and health of all accounts.
 
-### 健康度检查
+### Health Check
 
-定期评估账户健康度，识别接近清算阈值的账户。
+Regularly assess account health to identify accounts nearing the liquidation threshold.
 
-### 触发结算
+### Trigger Settlement
 
-当账户健康度低于维持保证金要求（100%）时，触发结算过程。
+Settlement is triggered when account health falls below the maintenance margin requirement (100%).
 
-### 清算执行
+### Execute Liquidation
 
-系统或第三方清算者执行清算，平仓或部分平仓头寸。
+The system or third-party liquidators execute liquidation, closing or partially closing positions.
 
-### 债务清算
+### Debt Clearance
 
-使用清算所得结算债务，包括交易对手方、资金费用和协议费用。
+Use liquidation proceeds to settle debts, including counterparty, funding, and protocol fees.
 </Steps>
 
-## 部分清算与全部清算
+## Partial vs. Full Liquidation
 
-Triplex提供了两种清算方式来结算债务：
+Triplex offers two liquidation methods to settle debts:
 
-### 部分清算
+### Partial Liquidation
 
-当账户健康度下降但仍有足够抵押品时：
+When account health declines but there is still sufficient collateral:
 
-- 仅清算必要的头寸部分以恢复健康度
-- 保留剩余的抵押品和头寸
-- 允许交易者在添加更多抵押品后继续交易
+- Only the necessary portion of the position is liquidated to restore health
+- Remaining collateral and positions are retained
+- Allows traders to continue trading after adding more collateral
 
-### 全部清算
+### Full Liquidation
 
-在以下情况下执行全部清算：
+Full liquidation is executed when:
 
-- 账户健康度严重恶化
-- 市场极端波动
-- 没有足够抵押品进行部分清算
+- Account health severely deteriorates
+- Extreme market volatility occurs
+- Insufficient collateral for partial liquidation
 
 <Callout type="warning">
-全部清算会关闭所有头寸并返还剩余抵押品（如果有）。这通常会导致更大的损失，应尽量避免。
+Full liquidation closes all positions and returns remaining collateral (if any). This usually results in greater losses and should be avoided.
 </Callout>
 
-## 债务池机制
+## Debt Pool Mechanism
 
-Triplex使用债务池来管理系统内的债务结算：
+Triplex uses a debt pool to manage debt settlement within the system:
 
-### 债务池作用
+### Role of the Debt Pool
 
-- 作为交易对手方，确保所有头寸都有匹配的交易对手
-- 吸收短期市场波动造成的系统不平衡
-- 在极端情况下分散风险
+- Acts as a counterparty, ensuring all positions have matching counterparts
+- Absorbs system imbalances caused by short-term market fluctuations
+- Diversifies risk in extreme cases
 
-### 债务池资金来源
+### Sources of Debt Pool Funding
 
-1. **交易费用**：一部分交易费用分配给债务池
-2. **清算罚金**：从被清算账户收取的罚金
-3. **系统准备金**：协议分配的资金用于初始化债务池
+1. **Trading Fees**: A portion of trading fees is allocated to the debt pool
+2. **Liquidation Penalties**: Penalties collected from liquidated accounts
+3. **System Reserves**: Funds allocated by the protocol to initialize the debt pool
 
-## 多抵押品环境中的债务结算
+## Debt Settlement in a Multi-Collateral Environment
 
-Triplex V3支持多种抵押品，这增加了债务结算的复杂性：
+Triplex V3 supports multiple collaterals, adding complexity to debt settlement:
 
-### 抵押品优先级
+### Collateral Priority
 
-在清算过程中，系统按以下顺序使用抵押品：
+During liquidation, the system uses collateral in the following order:
 
-1. 最高波动性资产（如ETH、tBTC）
-2. 中等波动性资产
-3. 稳定币（USDC、USDe等）
+1. Highest volatility assets (e.g., ETH, tBTC)
+2. Medium volatility assets
+3. Stablecoins (USDC, USDe, etc.)
 
-### 不同抵押品的估值
+### Valuation of Different Collaterals
 
-所有抵押品使用USDx进行内部估值，确保一致的债务结算：
+All collaterals are internally valued using USDx to ensure consistent debt settlement:
 
 ```
-抵押品价值(USDx) = 抵押品数量 × 当前市场价格 × 折扣因子
+Collateral Value (USDx) = Collateral Amount × Current Market Price × Discount Factor
 ```
 
-折扣因子根据抵押品的波动性和流动性而不同。
+The discount factor varies based on the volatility and liquidity of the collateral.
 
-## 社会化损失机制
+## Socialized Loss Mechanism
 
-在极端市场条件下，如果债务池资金不足以覆盖系统债务：
+In extreme market conditions, if the debt pool funds are insufficient to cover system debts:
 
-### 社会化损失触发条件
+### Triggers for Socialized Losses
 
-1. 剧烈的市场波动导致大量清算
-2. 预言机延迟导致清算不及时
-3. 债务池资金耗尽
+1. Severe market volatility leading to mass liquidations
+2. Oracle delays causing untimely liquidations
+3. Exhaustion of debt pool funds
 
-### 损失分摊方式
+### Loss Sharing Method
 
-Triplex采用按比例分摊机制：
+Triplex adopts a proportional sharing mechanism:
 
-- 首先使用债务池资金
-- 如果不足，损失按持仓比例分摊给盈利方
-- 在极端情况下，可能影响所有系统用户
+- First, use debt pool funds
+- If insufficient, losses are shared proportionally among profitable parties
+- In extreme cases, all system users may be affected
 
 <Callout type="error">
-社会化损失是DeFi系统中的最后防线机制。Triplex通过多层保护措施尽量减少此类情况的发生，但交易者应了解此风险。
+Socialized loss is the last line of defense in DeFi systems. Triplex minimizes such occurrences through multi-layered protection measures, but traders should be aware of this risk.
 </Callout>
 
-## 债务结算的改进
+## Improvements in Debt Settlement
 
-Triplex V3相比早期版本，在债务结算方面做了多项改进：
+Compared to earlier versions, Triplex V3 has made several improvements in debt settlement:
 
-### 技术改进
+### Technical Improvements
 
-1. **更高效的清算机制**：优化清算过程，减少gas成本
-2. **更精确的健康度计算**：实时反映账户状态
-3. **多层次清算**：根据账户状况执行不同程度的清算
+1. **More Efficient Liquidation Mechanism**: Optimized liquidation process to reduce gas costs
+2. **More Accurate Health Calculation**: Real-time reflection of account status
+3. **Multi-Tier Liquidation**: Execute varying degrees of liquidation based on account status
 
-### 用户体验改进
+### User Experience Improvements
 
-1. **提前预警系统**：在账户接近清算前发出警告
-2. **更透明的结算流程**：清晰展示每步操作
-3. **更多自救选项**：提供多种方式避免清算
+1. **Advance Warning System**: Issue warnings before accounts approach liquidation
+2. **More Transparent Settlement Process**: Clearly display each step of the process
+3. **More Self-Help Options**: Provide multiple ways to avoid liquidation
 
-## 交易者最佳实践
+## Best Practices for Traders
 
-为避免不必要的债务结算和清算，交易者应：
+To avoid unnecessary debt settlement and liquidation, traders should:
 
-1. **保持充足的保证金**：维持高于最低要求的账户健康度
-2. **监控账户状态**：经常检查账户健康度，特别是在市场波动期
-3. **设置警报**：使用Triplex提供的预警功能
-4. **了解清算阈值**：熟悉不同市场和抵押品的维持保证金要求
-5. **合理使用杠杆**：根据风险承受能力选择适当杠杆
-6. **分散投资**：避免在单一市场建立过大头寸
+1. **Maintain Adequate Margin**: Keep account health above minimum requirements
+2. **Monitor Account Status**: Regularly check account health, especially during market volatility
+3. **Set Alerts**: Use Triplex's alert features
+4. **Understand Liquidation Thresholds**: Familiarize with maintenance margin requirements for different markets and collaterals
+5. **Use Leverage Wisely**: Choose appropriate leverage based on risk tolerance
+6. **Diversify Investments**: Avoid over-concentration in a single market
 
-通过理解债务结算机制并采取适当的风险管理策略，交易者可以最大限度地减少清算风险，更有效地利用Triplex平台进行交易。 
+By understanding the debt settlement mechanism and adopting appropriate risk management strategies, traders can minimize liquidation risk and more effectively utilize the Triplex platform for trading. 

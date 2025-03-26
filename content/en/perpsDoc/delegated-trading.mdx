@@ -1,101 +1,101 @@
-# 委托交易
+# Delegated Trading
 
-委托交易是一项强大的功能，允许账户持有者授权其他地址代表他们执行交易操作。这对于团队账户管理、自动化交易系统和第三方集成特别有用。
+Delegated trading is a powerful feature that allows account holders to authorize other addresses to execute trading operations on their behalf. This is particularly useful for team account management, automated trading systems, and third-party integrations.
 
-## 什么是委托交易？
+## What is Delegated Trading?
 
-委托交易允许您指定受信任的地址（委托人），授权他们代表您的账户执行特定操作，而无需共享您的私钥。这创建了一层安全的访问控制，使您能够灵活地管理您的交易，同时保持对账户的最终控制权。
+Delegated trading allows you to specify trusted addresses (delegates) and authorize them to perform specific operations on behalf of your account without sharing your private key. This creates a layer of secure access control, enabling you to manage your trading flexibly while maintaining ultimate control over your account.
 
 import { Callout } from 'nextra/components'
 
 <Callout type="info">
-委托交易与钱包的标准授权不同。它是Triplex平台内的一种特殊关系，允许更精细的权限控制和限制。
+Delegated trading is different from standard wallet authorization. It is a special relationship within the Triplex platform that allows for more granular permission control and restrictions.
 </Callout>
 
-## 委托交易的使用场景
+## Use Cases for Delegated Trading
 
-委托交易特别适用于以下情况：
+Delegated trading is particularly suitable for the following scenarios:
 
-- **团队账户管理**：多个团队成员可以在一个账户上交易，无需共享主钱包的私钥。
-- **自动化交易系统**：允许交易机器人或算法代表您执行交易，而无需持续的手动批准。
-- **资金管理**：授权专业交易者或资金管理人代表您进行交易。
-- **冷钱包安全**：保持您的主钱包在冷存储中，同时使用热钱包作为委托人进行日常交易。
+- **Team Account Management**: Multiple team members can trade on one account without sharing the main wallet's private key.
+- **Automated Trading Systems**: Allow trading bots or algorithms to execute trades on your behalf without continuous manual approval.
+- **Fund Management**: Authorize professional traders or fund managers to trade on your behalf.
+- **Cold Wallet Security**: Keep your main wallet in cold storage while using a hot wallet as a delegate for daily trading.
 
-## 如何开始使用委托
+## How to Start Using Delegation
 
-### 添加委托人
+### Adding a Delegate
 
-要添加新的委托人：
+To add a new delegate:
 
-1. 导航至Triplex Exchange账户设置中的"委托管理"部分。
-2. 点击"添加委托人"并输入您想要授权的钱包地址。
-3. 设置委托人的权限和限制（如适用）。
-4. 确认并签署授权交易。
+1. Navigate to the "Delegation Management" section in your Triplex Exchange account settings.
+2. Click "Add Delegate" and enter the wallet address you wish to authorize.
+3. Set the delegate's permissions and restrictions (if applicable).
+4. Confirm and sign the authorization transaction.
 
 <Callout type="warning">
-仔细验证您添加的委托人地址。一旦授权，委托人将能够在您指定的限制范围内访问您的账户。
+Carefully verify the delegate address you add. Once authorized, the delegate will be able to access your account within the specified limits.
 </Callout>
 
-### 委托权限级别
+### Delegate Permission Levels
 
-Triplex的委托系统提供了几个权限级别，您可以根据需要进行分配：
+The Triplex delegation system offers several permission levels that you can assign as needed:
 
-- **完全交易权限**：允许委托人开设、修改和关闭头寸。
-- **只读权限**：只允许委托人查看账户信息，但不能执行交易。
-- **仅限修改权限**：允许委托人修改现有头寸，但不能开设新头寸。
-- **仅限清算权限**：仅允许委托人在必要时关闭头寸以防止清算。
+- **Full Trading Permission**: Allows the delegate to open, modify, and close positions.
+- **Read-Only Permission**: Allows the delegate to view account information but not execute trades.
+- **Modify-Only Permission**: Allows the delegate to modify existing positions but not open new ones.
+- **Close-Only Permission**: Allows the delegate to close positions to prevent liquidation.
 
-### 设置交易限制
+### Setting Trading Limits
 
-为增强安全性，您可以为委托人设置特定限制：
+To enhance security, you can set specific limits for delegates:
 
-- **最大头寸规模**：限制委托人可以开设的头寸规模。
-- **市场限制**：限制委托人可以交易的特定市场。
-- **最大杠杆**：设置委托人可以使用的最大杠杆水平。
-- **时间限制**：设置委托授权的到期时间。
+- **Maximum Position Size**: Limit the size of positions the delegate can open.
+- **Market Restrictions**: Restrict the specific markets the delegate can trade.
+- **Maximum Leverage**: Set the maximum leverage level the delegate can use.
+- **Time Restrictions**: Set an expiration time for the delegation authorization.
 
-## 管理委托人
+## Managing Delegates
 
-### 查看委托活动
+### Viewing Delegate Activity
 
-您可以在账户仪表板中监控委托人的活动：
+You can monitor delegate activity in your account dashboard:
 
-1. 导航至"委托活动"标签。
-2. 查看所有委托交易的完整历史记录，包括时间戳、交易类型和相关委托人。
-3. 筛选活动以查找特定委托人或交易类型。
+1. Navigate to the "Delegate Activity" tab.
+2. View the complete history of all delegated trades, including timestamps, trade types, and associated delegates.
+3. Filter activities to find specific delegates or trade types.
 
-### 修改或撤销委托
+### Modifying or Revoking Delegation
 
-如果您需要更改委托设置或完全撤销委托：
+If you need to change delegation settings or revoke delegation entirely:
 
-1. 前往"委托管理"部分。
-2. 选择您想要修改的委托人。
-3. 更新权限设置或点击"撤销委托"以完全删除其访问权限。
-4. 确认您的更改。
+1. Go to the "Delegation Management" section.
+2. Select the delegate you wish to modify.
+3. Update permission settings or click "Revoke Delegation" to remove their access entirely.
+4. Confirm your changes.
 
 <Callout type="error">
-撤销委托是即时的，一旦确认，委托人将无法再执行任何交易操作。如果您的账户存在活跃头寸，请确保在撤销关键委托人访问权限之前有适当的管理计划。
+Revoking delegation is immediate. Once confirmed, the delegate will no longer be able to execute any trading operations. Ensure you have a proper management plan in place before revoking access to critical delegates if your account has active positions.
 </Callout>
 
-## 作为委托人访问账户
+## Accessing Accounts as a Delegate
 
-如果您被授权作为委托人访问他人的账户：
+If you are authorized to access someone else's account as a delegate:
 
-1. 连接您的钱包到Triplex Exchange。
-2. 在钱包选择器下找到"委托账户"部分。
-3. 查看您有权访问的账户列表。
-4. 选择一个账户以开始代表该账户交易。
+1. Connect your wallet to Triplex Exchange.
+2. Find the "Delegated Accounts" section under the wallet selector.
+3. View the list of accounts you have access to.
+4. Select an account to start trading on behalf of that account.
 
-交易和操作时，界面将清晰地指示您正在以委托人身份行动，并显示与您的权限级别相关的任何限制。
+When trading and performing operations, the interface will clearly indicate that you are acting as a delegate and display any restrictions related to your permission level.
 
-## 委托交易安全最佳实践
+## Best Practices for Delegated Trading Security
 
-为确保委托交易的安全性，请考虑以下建议：
+To ensure the security of delegated trading, consider the following recommendations:
 
-- **验证委托人**：仅添加您完全信任的地址作为委托人。
-- **使用具体限制**：应用特定的交易限制，而不是授予无限制访问权限。
-- **定期审查**：定期检查委托人的活动和权限。
-- **测试小额限制**：首次设置委托人时，从小额交易限制开始，然后根据需要逐渐增加。
-- **撤销未使用的委托**：如果不再需要委托关系，及时撤销权限。
+- **Verify Delegates**: Only add addresses you fully trust as delegates.
+- **Use Specific Limits**: Apply specific trading limits rather than granting unrestricted access.
+- **Regularly Review**: Regularly review delegate activities and permissions.
+- **Test with Small Limits**: Start with small trading limits when first setting up a delegate, then gradually increase as needed.
+- **Revoke Unused Delegations**: Timely revoke permissions if a delegation relationship is no longer needed.
 
-通过理解并应用这些委托交易功能，您可以创建更安全、更灵活的交易工作流程，同时维持对您账户的最终控制权。 
+By understanding and applying these delegated trading features, you can create a more secure and flexible trading workflow while maintaining ultimate control over your account. 

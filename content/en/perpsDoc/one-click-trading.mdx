@@ -1,76 +1,76 @@
-# 无Gas一键交易
+# Gas-Free One-Click Trading
 
-Triplex的无Gas一键交易功能使您能够在不为每笔交易支付Gas费的情况下快速执行交易。这种创新技术极大地改善了交易体验，特别是在市场波动期间。
+Triplex's gas-free one-click trading feature allows you to execute trades quickly without paying gas fees for each transaction. This innovative technology greatly enhances the trading experience, especially during periods of market volatility.
 
-## 什么是一键交易？
+## What is One-Click Trading?
 
-一键交易是Triplex的一项创新功能，允许用户在不支付交易Gas费的情况下即时执行交易。这种方法加快了交易速度，同时减少了做市场交易时常见的摩擦点。
+One-click trading is an innovative feature of Triplex that allows users to execute trades instantly without paying transaction gas fees. This approach speeds up trading while reducing the friction points commonly associated with market transactions.
 
 import { Callout } from 'nextra/components'
 
 <Callout emoji="💡">
-一键交易使您能够:
-- 无需为每笔交易签名
-- 避免交易延迟
-- 无需支付每笔交易的Gas费
-- 在市场波动期间快速响应
+One-click trading enables you to:
+- Execute trades without signing each transaction
+- Avoid transaction delays
+- Trade without paying gas fees for each transaction
+- Respond quickly during market volatility
 </Callout>
 
-## 如何一键交易开始/停止工作
+## How One-Click Trading Starts/Stops Working
 
-### 启用一键交易
+### Enabling One-Click Trading
 
-要开始使用一键交易，请按照以下简单步骤操作：
+To start using one-click trading, follow these simple steps:
 
-1. **连接您的钱包** - 确保您的钱包已连接到Triplex Exchange平台。
-2. **启用一键交易** - 在交易界面中，查找一键交易toggle开关并将其激活。
-3. **授权委托者** - 您需要进行一次性签名，授权Triplex代表您执行交易。
-4. **存入Gas费用** - 在您的一键交易账户中存入少量的原生代币(ETH)以支付Gas费用。
+1. **Connect Your Wallet** - Ensure your wallet is connected to the Triplex Exchange platform.
+2. **Enable One-Click Trading** - In the trading interface, locate the one-click trading toggle and activate it.
+3. **Authorize the Delegate** - You need to sign once to authorize Triplex to execute trades on your behalf.
+4. **Deposit Gas Fees** - Deposit a small amount of native tokens (ETH) into your one-click trading account to cover gas fees.
 
 <Callout type="warning">
-授权一键交易涉及授予Triplex Exchange有限权限，以代表您执行特定交易操作。此授权经过设计，仅限于必要的交易功能，并采用了多层安全机制。
+Authorizing one-click trading involves granting Triplex Exchange limited permissions to execute specific trading operations on your behalf. This authorization is designed to be limited to necessary trading functions and employs multiple layers of security.
 </Callout>
 
-### 禁用一键交易
+### Disabling One-Click Trading
 
-如果您想暂停或完全禁用一键交易：
+If you wish to pause or completely disable one-click trading:
 
-1. 在交易界面中，将一键交易toggle开关切换到关闭位置。
-2. 这将立即暂停所有一键交易功能。
-3. 您可以随时重新启用该功能，无需重新授权。
+1. In the trading interface, toggle the one-click trading switch to the off position.
+2. This will immediately suspend all one-click trading functions.
+3. You can re-enable the feature at any time without reauthorization.
 
-## 技术细节
+## Technical Details
 
-Triplex的一键交易功能通过以下方式工作：
+Triplex's one-click trading feature works through the following mechanisms:
 
-1. **链外签名** - 交易意图通过链外签名进行传递。
-2. **代表执行** - 在满足预定条件后，由Triplex的抵押人代表您执行这些交易。
-3. **批量处理** - 多个用户的交易被批量处理，以减少Gas成本并提高效率。
+1. **Off-Chain Signatures** - Trading intentions are conveyed through off-chain signatures.
+2. **Delegate Execution** - Trades are executed on your behalf by Triplex's delegates once predetermined conditions are met.
+3. **Batch Processing** - Transactions from multiple users are batch processed to reduce gas costs and increase efficiency.
 
-### 安全考虑
+### Security Considerations
 
-一键交易在提供便利的同时，也通过以下方式保障安全：
+While providing convenience, one-click trading also ensures security through:
 
-- **有限授权范围** - 委托者只能执行特定类型的交易。
-- **可自定义权限** - 用户可以配置交易限制和其他安全参数。
-- **安全多层审计** - 该系统经过独立安全审计，以确保其完整性。
-- **即时撤销能力** - 您可以随时撤销授权。
+- **Limited Authorization Scope** - Delegates can only execute specific types of trades.
+- **Customizable Permissions** - Users can configure trade limits and other security parameters.
+- **Multi-Layer Security Audits** - The system undergoes independent security audits to ensure its integrity.
+- **Immediate Revocation Capability** - You can revoke authorization at any time.
 
-## 费用结构
+## Fee Structure
 
-使用一键交易的费用结构如下：
+The fee structure for using one-click trading is as follows:
 
-- **无签名费用** - Triplex不收取额外费用来使用一键交易功能。
-- **正常交易费用** - 标准交易费用仍然适用于每笔交易。
-- **Gas费用批处理** - Gas费用通过批处理交易进行优化，从您预先存入的Gas余额中扣除。
+- **No Signature Fees** - Triplex does not charge additional fees for using the one-click trading feature.
+- **Normal Trading Fees** - Standard trading fees still apply to each transaction.
+- **Gas Fee Batching** - Gas fees are optimized through batch processing and deducted from your pre-deposited gas balance.
 
-## 适用场景
+## Applicable Scenarios
 
-一键交易特别适合以下情况：
+One-click trading is particularly suitable for the following situations:
 
-- **高频交易** - 对于需要频繁调整头寸的活跃交易者。
-- **市场波动时期** - 当快速执行对于捕捉机会或限制损失至关重要时。
-- **价格敏感的交易者** - 希望减少累积Gas费用的用户。
-- **移动设备用户** - 简化移动设备上的交易体验。
+- **High-Frequency Trading** - For active traders who need to adjust positions frequently.
+- **Periods of Market Volatility** - When quick execution is crucial for capturing opportunities or limiting losses.
+- **Price-Sensitive Traders** - Users looking to reduce cumulative gas fees.
+- **Mobile Device Users** - Simplifying the trading experience on mobile devices.
 
-通过利用一键交易功能，您可以显著提高交易效率，减少延迟，并在快速变化的市场条件下保持竞争优势。 
+By leveraging the one-click trading feature, you can significantly improve trading efficiency, reduce delays, and maintain a competitive edge in rapidly changing market conditions. 

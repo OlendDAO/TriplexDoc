@@ -1,98 +1,98 @@
-# 杠杆与清算
+# Leverage and Liquidation
 
-了解杠杆交易和清算机制对于成功的交易至关重要。这些概念决定了您的风险敞口、保证金要求和账户健康管理。
+Understanding leverage trading and liquidation mechanisms is crucial for successful trading. These concepts determine your risk exposure, margin requirements, and account health management.
 
-## 杠杆交易简介
+## Introduction to Leverage Trading
 
-杠杆允许交易者控制比其资金更大的头寸。例如，使用10倍杠杆，您可以用1,000 USDC控制价值10,000 USDC的头寸。然而，杠杆是一把双刃剑：它可以放大收益，但也会放大损失。
+Leverage allows traders to control positions larger than their funds. For example, with 10x leverage, you can control a position worth 10,000 USDC with just 1,000 USDC. However, leverage is a double-edged sword: it can amplify gains but also magnify losses.
 
-在Triplex Exchange上，交易者可以获得高达25倍的杠杆，让您最大限度地利用市场机会，同时实施适当的风险管理实践。
+On Triplex Exchange, traders can access up to 25x leverage, allowing you to maximize market opportunities while implementing proper risk management practices.
 
-## 初始与维持保证金
+## Initial and Maintenance Margin
 
-交易保证金有两个关键组成部分：
+Trading margin has two key components:
 
-### 初始保证金
+### Initial Margin
 
-初始保证金是开设和维持杠杆头寸所需的最低抵押品金额。它确保您有足够的资金覆盖潜在损失。
+Initial margin is the minimum collateral amount required to open and maintain a leveraged position. It ensures you have enough funds to cover potential losses.
 
-计算公式：
+Calculation formula:
 ```
-初始保证金 = 头寸价值 / 最大可用杠杆
+Initial Margin = Position Value / Maximum Available Leverage
 ```
 
-例如，一个价值10,000 USDC的头寸，最大杠杆为10倍，将需要1,000 USDC的初始保证金。
+For example, a position worth 10,000 USDC with a maximum leverage of 10x will require 1,000 USDC as initial margin.
 
-初始保证金水平确定了您可以使用的最大杠杆：
-- 10倍杠杆 = 10%的初始保证金要求
-- 25倍杠杆 = 4%的初始保证金要求
+Initial margin levels determine the maximum leverage you can use:
+- 10x leverage = 10% initial margin requirement
+- 25x leverage = 4% initial margin requirement
 
 import { Callout } from 'nextra/components'
 
 <Callout type="info">
-较高的初始保证金（较低的杠杆）提供更大的安全缓冲，而较低的初始保证金（较高的杠杆）则增加清算风险。
+Higher initial margin (lower leverage) provides a greater safety buffer, while lower initial margin (higher leverage) increases liquidation risk.
 </Callout>
 
-### 维持保证金
+### Maintenance Margin
 
-维持保证金是账户避免清算必须维持的最低抵押品水平。当账户价值低于这一水平时，清算过程开始。它通常设置为初始保证金要求的一小部分。
+Maintenance margin is the minimum collateral level that must be maintained to avoid liquidation. When account value falls below this level, the liquidation process begins. It is typically set as a small percentage of the initial margin requirement.
 
-计算公式：
+Calculation formula:
 ```
-维持保证金 = 头寸价值 * 维持保证金比率
-```
-
-在Triplex Exchange上，维持保证金比率为2.5%，意味着一个价值10,000 USDC的头寸需要至少250 USDC的维持保证金。
-
-## 账户健康与清算
-
-### 账户健康度（保证金比率）
-
-账户健康度是衡量账户离清算还有多远的关键指标。它计算为：
-
-```
-账户健康度 = (账户股权 / 维持保证金要求) * 100%
+Maintenance Margin = Position Value * Maintenance Margin Rate
 ```
 
-其中：
-- **账户股权** = 存款余额 + 未实现盈亏(UPNL)
-- **维持保证金要求** = 所有开放头寸所需的维持保证金总和
+On Triplex Exchange, the maintenance margin rate is 2.5%, meaning a position worth 10,000 USDC requires at least 250 USDC as maintenance margin.
 
-### 账户健康状态指示器：
+## Account Health and Liquidation
 
-- **良好（绿色）**：账户健康度 > 142.85%
-- **警告（黄色）**：142.85% > 账户健康度 > 111.11%
-- **危险（红色）**：111.11% > 账户健康度 > 100%
-- **清算（黑色）**：账户健康度 ≤ 100%
+### Account Health (Margin Ratio)
+
+Account health is a key indicator of how far your account is from liquidation. It is calculated as:
+
+```
+Account Health = (Account Equity / Maintenance Margin Requirement) * 100%
+```
+
+Where:
+- **Account Equity** = Deposit Balance + Unrealized PnL (UPNL)
+- **Maintenance Margin Requirement** = Total maintenance margin required for all open positions
+
+### Account Health Status Indicator:
+
+- **Good (Green)**: Account Health > 142.85%
+- **Warning (Yellow)**: 142.85% > Account Health > 111.11%
+- **Danger (Red)**: 111.11% > Account Health > 100%
+- **Liquidation (Black)**: Account Health ≤ 100%
 
 <Callout type="error">
-当账户健康度降至100%或以下时，您的头寸将被清算以保护系统避免不良债务！
+When account health drops to 100% or below, your positions will be liquidated to protect the system from bad debt!
 </Callout>
 
-## 清算过程
+## Liquidation Process
 
-清算是当交易者的账户价值下降到维持保证金水平以下时的自动平仓过程。以下是清算的工作原理：
+Liquidation is the automatic closing of positions when a trader's account value falls below the maintenance margin level. Here's how liquidation works:
 
-1. **触发**：当账户健康度降至100%或以下时触发清算。
-2. **平仓**：系统自动关闭账户中的所有头寸。
-3. **费用**：收取清算费用，通常为头寸价值的一小部分。
-4. **结算**：剩余资金返回到交易者的账户。
+1. **Trigger**: Liquidation is triggered when account health drops to 100% or below.
+2. **Close Positions**: The system automatically closes all positions in the account.
+3. **Fees**: A liquidation fee is charged, usually a small percentage of the position value.
+4. **Settlement**: Remaining funds are returned to the trader's account.
 
-### 主动管理风险
+### Actively Managing Risk
 
-为避免清算，可以采取以下策略：
+To avoid liquidation, you can adopt the following strategies:
 
-- **降低杠杆**：使用较低的杠杆水平以获得更大的安全边际。
-- **增加抵押品**：在市场波动时添加更多抵押品以提高账户健康度。
-- **止损订单**：设置止损订单以在价格达到特定水平时自动关闭头寸。
-- **监控资金费率**：高资金费率可能会随着时间侵蚀您的保证金，特别是高杠杆头寸。
+- **Reduce Leverage**: Use lower leverage levels for a greater safety margin.
+- **Add Collateral**: Add more collateral during market volatility to improve account health.
+- **Stop-Loss Orders**: Set stop-loss orders to automatically close positions when prices reach certain levels.
+- **Monitor Funding Rates**: High funding rates can erode your margin over time, especially for high-leverage positions.
 
-## 使用风险计算器
+## Using the Risk Calculator
 
-Triplex Exchange提供一个风险计算器，让您可以在开仓前评估潜在风险：
+Triplex Exchange provides a risk calculator to help you assess potential risks before opening a position:
 
-- **预计清算价格**：明确价格在哪一点将触发清算。
-- **回报潜力**：根据不同价格水平估计潜在收益。
-- **风险评估**：评估与杠杆头寸相关的风险。
+- **Estimated Liquidation Price**: Clearly see at what price liquidation will be triggered.
+- **Return Potential**: Estimate potential returns at different price levels.
+- **Risk Assessment**: Evaluate the risks associated with leveraged positions.
 
-通过理解这些杠杆和清算机制，您可以更好地管理风险，保护您的资本，并为您的交易策略做出明智的决策。 
+By understanding these leverage and liquidation mechanisms, you can better manage risk, protect your capital, and make informed decisions for your trading strategy. 

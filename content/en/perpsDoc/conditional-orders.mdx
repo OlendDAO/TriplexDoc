@@ -1,125 +1,125 @@
-# 条件订单
+# Conditional Orders
 
-条件订单是强大的交易工具，允许您设置特定条件，当满足这些条件时自动执行交易。这些订单类型帮助交易者自动化他们的策略，管理风险，并在不需要持续监控市场的情况下捕捉机会。
+Conditional orders are powerful trading tools that allow you to set specific conditions under which trades are automatically executed. These order types help traders automate their strategies, manage risk, and capture opportunities without needing to constantly monitor the market.
 
-## 什么是条件订单？
+## What are Conditional Orders?
 
-条件订单是预先设置的指令，指定在特定市场条件达到时执行交易。与立即执行的市价单不同，条件订单保持休眠状态，直到触发条件被满足。
+Conditional orders are pre-set instructions that specify a trade to be executed when certain market conditions are met. Unlike market orders that execute immediately, conditional orders remain dormant until the trigger conditions are satisfied.
 
 import { Callout } from 'nextra/components'
 
 <Callout type="info">
-条件订单特别适用于波动性市场，允许交易者预先设置进场和出场策略，而无需实时监控价格走势。
+Conditional orders are particularly useful in volatile markets, allowing traders to pre-set entry and exit strategies without needing to monitor price movements in real-time.
 </Callout>
 
-## Triplex Exchange支持的条件订单类型
+## Types of Conditional Orders Supported by Triplex Exchange
 
-### 限价单
+### Limit Orders
 
-限价单允许您设置希望买入或卖出资产的特定价格：
+Limit orders allow you to set a specific price at which you want to buy or sell an asset:
 
-- **买入限价单**：当市场价格低于或等于您指定的价格时执行。这确保您不会支付高于设定价格的费用。
-- **卖出限价单**：当市场价格高于或等于您指定的价格时执行。这确保您不会以低于设定价格的价格卖出。
+- **Buy Limit Order**: Executes when the market price is at or below your specified price. This ensures you do not pay more than the set price.
+- **Sell Limit Order**: Executes when the market price is at or above your specified price. This ensures you do not sell for less than the set price.
 
-限价单的主要优势是价格保证 - 它们只会以您指定的价格或更好的价格执行。然而，如果市场没有达到您的限价，订单可能不会执行。
+The main advantage of limit orders is price assurance—they will only execute at your specified price or better. However, if the market does not reach your limit, the order may not execute.
 
-### 止损单
+### Stop Orders
 
-止损单设计用于限制潜在损失，当市场向不利方向移动时自动关闭头寸：
+Stop orders are designed to limit potential losses by automatically closing positions when the market moves unfavorably:
 
-- **止损买入单**：当价格上升到特定水平时激活，通常用于关闭空头头寸或开设多头头寸。
-- **止损卖出单**：当价格下降到特定水平时激活，通常用于关闭多头头寸或开设空头头寸。
+- **Stop Buy Order**: Activates when the price rises to a specific level, typically used to close short positions or open long positions.
+- **Stop Sell Order**: Activates when the price falls to a specific level, typically used to close long positions or open short positions.
 
 <Callout type="warning">
-止损单在触发时转换为市价单，这意味着实际执行价格可能与您的触发价格不同，特别是在市场波动时。
+Stop orders convert to market orders when triggered, meaning the actual execution price may differ from your trigger price, especially in volatile markets.
 </Callout>
 
-### 追踪止损单
+### Trailing Stop Orders
 
-追踪止损单是更动态的风险管理工具，允许止损水平随着价格向有利方向移动而调整：
+Trailing stop orders are more dynamic risk management tools that allow the stop level to adjust as the price moves favorably:
 
-- **多头追踪止损**：设置一个止损价格，该价格随着市场价格上升而上升，保持固定的金额或百分比差距。如果价格下跌，止损价格保持在其最后的最高水平。
-- **空头追踪止损**：设置一个止损价格，该价格随着市场价格下降而下降，保持固定的金额或百分比差距。如果价格上涨，止损价格保持在其最后的最低水平。
+- **Long Trailing Stop**: Sets a stop price that rises as the market price rises, maintaining a fixed amount or percentage gap. If the price falls, the stop price remains at its last highest level.
+- **Short Trailing Stop**: Sets a stop price that falls as the market price falls, maintaining a fixed amount or percentage gap. If the price rises, the stop price remains at its last lowest level.
 
-追踪止损使交易者能够保护利润，同时让盈利交易继续运行，这是纯止损单所不能实现的。
+Trailing stops enable traders to protect profits while allowing winning trades to run, which is not possible with pure stop orders.
 
-### 获利止损单 (OCO)
+### Take-Profit Stop Orders (OCO)
 
-获利止损单，也称为双向条件单或"一个取消另一个"(OCO)单，将限价单与止损单组合在一起：
+Take-profit stop orders, also known as one-cancels-the-other (OCO) orders, combine a limit order with a stop order:
 
-- 当其中一个条件被触发并执行时，另一个条件自动取消。
-- 这允许您同时设置获利目标和止损水平。
-- 非常适合"设置后忘记"的交易方法，因为无论市场向哪个方向移动，都会管理您的头寸。
+- When one condition is triggered and executed, the other condition is automatically canceled.
+- This allows you to set both a profit target and a stop-loss level simultaneously.
+- Ideal for a "set-and-forget" trading approach, as your position is managed regardless of market direction.
 
-## 设置条件订单
+## Setting Conditional Orders
 
-在Triplex Exchange上创建条件订单的步骤：
+Steps to create conditional orders on Triplex Exchange:
 
-1. 选择您想要交易的市场。
-2. 点击"条件订单"标签。
-3. 选择订单类型（限价单、止损单、追踪止损单或OCO）。
-4. 指定触发价格或条件。
-5. 设置订单规模和杠杆（如适用）。
-6. 确认并提交您的订单。
+1. Select the market you want to trade.
+2. Click the "Conditional Orders" tab.
+3. Choose the order type (limit, stop, trailing stop, or OCO).
+4. Specify the trigger price or condition.
+5. Set the order size and leverage (if applicable).
+6. Confirm and submit your order.
 
 <Callout type="info">
-您可以直接从打开头寸的界面或从已有头寸的详情页面设置条件订单。
+You can set conditional orders directly from the open position interface or from the details page of an existing position.
 </Callout>
 
-## 条件订单示例场景
+## Example Scenarios for Conditional Orders
 
-### 场景1：使用限价单进场
+### Scenario 1: Entering with a Limit Order
 
-想象您想在ETH跌至1,800 USDC时买入，但当前价格是2,000 USDC：
+Imagine you want to buy ETH when it drops to 1,800 USDC, but the current price is 2,000 USDC:
 
-1. 设置一个买入限价单，触发价格为1,800 USDC。
-2. 指定您想购买的金额和杠杆。
-3. 当ETH价格达到或低于1,800 USDC时，您的订单将自动执行。
+1. Set a buy limit order with a trigger price of 1,800 USDC.
+2. Specify the amount you want to purchase and leverage.
+3. Your order will automatically execute when the ETH price reaches or falls below 1,800 USDC.
 
-### 场景2：使用止损限制损失
+### Scenario 2: Using a Stop Order to Limit Losses
 
-您持有一个多头ETH头寸，入场价为2,000 USDC，想要限制潜在损失：
+You hold a long ETH position with an entry price of 2,000 USDC and want to limit potential losses:
 
-1. 设置一个止损卖出单，触发价格为1,900 USDC（5%损失）。
-2. 如果ETH价格下跌至1,900 USDC或以下，您的头寸将自动关闭，防止进一步损失。
+1. Set a stop sell order with a trigger price of 1,900 USDC (5% loss).
+2. If the ETH price drops to 1,900 USDC or below, your position will automatically close to prevent further losses.
 
-### 场景3：使用OCO锁定利润同时管理风险
+### Scenario 3: Using OCO to Lock in Profits While Managing Risk
 
-您以2,000 USDC的价格开了一个ETH多头头寸，并想设置利润目标和止损：
+You opened a long ETH position at 2,000 USDC and want to set a profit target and stop-loss:
 
-1. 创建一个OCO订单，获利目标为2,200 USDC，止损为1,900 USDC。
-2. 如果ETH达到2,200 USDC，您的头寸会自动平仓获利。
-3. 另一方面，如果价格下跌至1,900 USDC，您的头寸会平仓限制损失。
-4. 一旦其中一个条件触发，另一个自动取消。
+1. Create an OCO order with a profit target of 2,200 USDC and a stop-loss of 1,900 USDC.
+2. If ETH reaches 2,200 USDC, your position will automatically close for a profit.
+3. Conversely, if the price drops to 1,900 USDC, your position will close to limit losses.
+4. Once one condition is triggered, the other is automatically canceled.
 
-## 条件订单的高级技巧
+## Advanced Tips for Conditional Orders
 
-### 使用多个条件订单创建复杂策略
+### Creating Complex Strategies with Multiple Conditional Orders
 
-您可以结合多个条件订单创建更复杂的交易策略：
+You can combine multiple conditional orders to create more complex trading strategies:
 
-- **逐步入场**：使用多个限价单在不同价格水平分批买入，实现价格平均。
-- **梯子式获利**：设置多个逐渐提高的获利目标，在价格上涨过程中逐步平仓，锁定利润。
-- **风险管理金字塔**：结合止损单和追踪止损单创建分层风险管理系统。
+- **Staggered Entry**: Use multiple limit orders to buy in batches at different price levels, achieving price averaging.
+- **Laddered Take-Profit**: Set multiple gradually increasing profit targets to close positions incrementally as the price rises, locking in profits.
+- **Pyramid Risk Management**: Combine stop orders and trailing stop orders to create a layered risk management system.
 
-### 避免常见陷阱
+### Avoiding Common Pitfalls
 
-使用条件订单时要考虑以下因素：
+Consider the following factors when using conditional orders:
 
-- **流动性考虑**：在低流动性市场，大型条件订单可能导致显著的滑点。
-- **极端波动**：在极端波动期间，止损可能以比预期价格更糟糕的价格执行。
-- **订单相互作用**：注意同一市场上多个条件订单的潜在相互影响。
+- **Liquidity Considerations**: In low-liquidity markets, large conditional orders may result in significant slippage.
+- **Extreme Volatility**: During extreme volatility, stops may execute at worse prices than expected.
+- **Order Interactions**: Be aware of potential interactions between multiple conditional orders on the same market.
 
 <Callout type="warning">
-记住条件订单在交易量大或市场波动情况下可能无法以精确的触发价格执行。总是考虑潜在的滑点，特别是在关键水平设置条件订单时。
+Remember that conditional orders may not execute at the exact trigger price in high-volume or volatile market conditions. Always consider potential slippage, especially when setting conditional orders at critical levels.
 </Callout>
 
-## 管理活跃条件订单
+## Managing Active Conditional Orders
 
-您可以在Triplex Exchange的"开放订单"部分查看和管理所有活跃的条件订单：
+You can view and manage all active conditional orders in the "Open Orders" section of Triplex Exchange:
 
-- **修改订单**：调整未触发条件订单的参数，如触发价格或订单量。
-- **取消订单**：随时取消任何未执行的条件订单。
-- **监控状态**：查看您的所有待处理条件订单及其当前市场状态。
+- **Modify Orders**: Adjust parameters of untriggered conditional orders, such as trigger price or order size.
+- **Cancel Orders**: Cancel any unexecuted conditional orders at any time.
+- **Monitor Status**: View all your pending conditional orders and their current market status.
 
-条件订单是自动化交易策略和管理风险的强大工具。通过掌握不同类型的条件订单以及如何有效地应用它们，您可以提高交易纪律性，降低情绪驱动决策，并在不需要持续监控市场的情况下捕捉交易机会。 
+Conditional orders are powerful tools for automating trading strategies and managing risk. By mastering the different types of conditional orders and how to apply them effectively, you can enhance trading discipline, reduce emotion-driven decisions, and capture trading opportunities without needing to constantly monitor the market. 
