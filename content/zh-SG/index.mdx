@@ -44,7 +44,7 @@ Triplex采用先进的技术架构，提供简洁直观的开发者接口，同�
     import { useMarket } from '@triplexjs/hooks'
     
     // 实时市场数据与深度分析
-    const { data, metrics } = useMarket('BTC-trtUSD')
+    const { data, metrics } = useMarket('BTC-tpxUSD')
     
     // 高级市场指标
     const { liquidity, volatility, fundingRate } = metrics
@@ -61,7 +61,7 @@ Triplex采用先进的技术架构，提供简洁直观的开发者接口，同�
     
     // 执行策略交易
     await openPosition({
-      market: 'ETH-trtUSD',
+      market: 'ETH-tpxUSD',
       size: 10,
       leverage: 5,
       direction: 'long'

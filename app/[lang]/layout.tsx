@@ -58,7 +58,7 @@ export default async function RootLayout({ children, params }) {
   }
   const banner = (
     <Banner storageKey="triplex-launch">
-      Triplex-- GZ & Phili      "2025 APTOS EVERMOVE Hacker House" Project 
+      Triplex-- GZ & Phili & Alex_yue      "2025 APTOS EVERMOVE Hacker House" Project 
     </Banner>
   )
   const navbar = (
